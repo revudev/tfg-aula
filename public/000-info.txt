@@ -1,0 +1,1 @@
+Aquí almacenar archivos estáticos como imágenes, fuentes y otros recursos accesibles públicamente.

@@ -1,10 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import './index.css';//Base - componente - utilidades de tailwindcss.
+import App from './App.jsx';//La App a renderizar.
+import { createRoot } from 'react-dom/client';//Optimizar rendimiento mediante ejecución concurrente
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const root = createRoot(document.querySelector("#root"));//Creación de la ruta de renderizado.
+root.render(<App/>);//Renderizado del componente App con el id root
