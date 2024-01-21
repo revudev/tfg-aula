@@ -1,13 +1,27 @@
-# React + Vite
+# Aula De Emprendimiento - TFG Denys Revutskyi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React + Vite + Tailwind CSS
 
-Currently, two official plugins are available:
+Este proyecto destaca el uso de tecnologías modernas como React, Vite y Tailwind CSS, ofreciendo una estructura mínima para comenzar a trabajar con React en Vite, aprovechando el Reemplazo de Módulo en Caliente (HMR) y algunas reglas ESLint.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Características Principales:
+- **React con Vite y HMR:** Este proyecto utiliza dos plugins oficiales:
+  - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md): Emplea [Babel](https://babeljs.io/) para Fast Refresh.
+  - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc): Utiliza [SWC](https://swc.rs/) para lograr un rápido refresco.
 
-Configuraciones iniciales del proyecto:
-  -npm create vite@latest my-project -- --template react
-  -npm install -D tailwindcss postcss autoprefixer
-  -npx tailwindcss init -p
+### Configuración Inicial del Proyecto:
+
+1. **Crear un Proyecto Vite con React:**
+    ```bash
+    npm create vite@latest my-project -- --template react
+    ```
+2. **Instalar Tailwind CSS y Dependencias:**
+    ```bash
+    npm install -D tailwindcss postcss autoprefixer
+    ```
+3. **Inicializar Configuración de Tailwind CSS:**
+    ```bash
+    npx tailwindcss init -p
+    ```
+4. **Despliegue:**
+    El proyecto se desplegará en un servidor Nginx.
