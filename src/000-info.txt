@@ -1,2 +1,0 @@
-Se va a crear una carpeta para cada componente si es preciso.
-Ademas si se incluyen estilos css propios, se les va a crear su carpeta correspondiente.
