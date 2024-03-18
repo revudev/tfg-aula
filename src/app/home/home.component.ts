@@ -8,10 +8,4 @@ import { HomeModule } from './home.module';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent { 
-  userLogged: boolean = false;
-  isMobileMenuOpen = false;
-
-  toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
-  }
  }

@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { HomeModule } from './home/home.module';
+import { AppModule } from './app.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-   imports: [HomeModule],
-  template: `
-    <app-home /> 
-  `,
+  imports: [AppModule],
+  templateUrl: './app.component.html',
+  styles: `.bg-full { height: 100vh; }`
 })
-export class AppComponent { title = 'Aula-Emprende'; }
+
+export class AppComponent { 
+  title = 'Aula-Emprende'; 
+  userLogged: boolean = false;
+  isMobileMenuOpen = false;
+
+  toggleMobileMenu() { this.isMobileMenuOpen = !this.isMobileMenuOpen; }
+}
