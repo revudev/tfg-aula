@@ -7,28 +7,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
-      }
+        'dark-blue': {
+          '50': '#f2f5ff',
+          '100': '#e8ecff',
+          '200': '#d3dbff',
+          '300': '#b0bbff',
+          '400': '#8491ff',
+          '500': '#525bff',
+          '600': '#312ff8',
+          '700': '#241de4',
+          '800': '#1f19cc',
+          '900': '#1a159d',
+          '950': '#0b0c6a',
+        },
+      },
     },
-    fontFamily: {
-      'sans': [
-        'Inter', 
-        'ui-sans-serif', 
-        'system-ui', 
-        '-apple-system', 
-        'system-ui', 
-        'Segoe UI', 
-        'Roboto', 
-        'Helvetica Neue', 
-        'Arial', 
-        'Noto Sans', 
-        'sans-serif', 
-        'Apple Color Emoji', 
-        'Segoe UI Emoji', 
-        'Segoe UI Symbol', 
-        'Noto Color Emoji'
-      ]
-    }
   }
 }
 
