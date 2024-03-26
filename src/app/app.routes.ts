@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './not-found';
-import { ContactComponent } from './contact/contact.component';
-import { EventsComponent } from './events/events.component';
-import { PlanComponent } from './plan/plan.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { EventsComponent } from './components/events/events.component';
+import { PlanComponent } from './components/plan/plan.component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
