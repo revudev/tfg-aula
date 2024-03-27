@@ -8,7 +8,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
     AppComponent,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
+    RouterOutlet,
   ],
   exports: [
     AppComponent,
