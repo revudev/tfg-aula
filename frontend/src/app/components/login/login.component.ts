@@ -1,50 +1,40 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
-import { FormsModule } from '@angular/forms';
-import { User } from '../../../types';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
-  template: `
-    <main>
-      <!-- <form (ngSubmit)="onSubmit()">
-        <div>
-          <label for="username">Nombre de usuario:</label>
-          <input type="text" id="username" name="username" [(ngModel)]="credentials.username" required>
-        </div>
-        <div>
-          <label for="password">Contraseña:</label>
-          <input type="password" id="password" name="password" [(ngModel)]="credentials.password" required>
-        </div>
-        <button type="submit">Iniciar sesión</button>
-      </form> -->
-    </main>
-  `,
-  styles: ``
+  imports: [ReactiveFormsModule, AutoCompleteModule],
+  templateUrl: 'login.component.html',
 })
 export class LoginComponent {
   
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.authService.getUser('http://localhost:3000/login').subscribe(
-      (user: User)=>{
-        console.log(user);
-      }
-    )
+  username: string = '';
+  password: string = '';
+  
+  contactForm = new FormGroup({
+    senderName:     new FormControl('', Validators.required),
+    senderPassword: new FormControl('', Validators.required),
+  })
+  
+  login(): void {
+    this.authService.login(this.username, this.password).subscribe({
+      next: (response) => { console.log('Respuesta del backend:', response); },
+      error: (error) => { console.error('Error de autenticación:', error  ); }      
+    }
+    );
   }
-
-  // credentials = { username: '', password: '' };
-
-  // onSubmit() {
-  //   this.authService.login(this.credentials).subscribe({
-  //     next: (response) => {
-  //       console.log('Respuesta del backend:', response);
-  //       // Agregar el token JWT en el localStorage aquí
-  //     },
-  //     error: (error) => { console.error('Error de autenticación:', error); }
-  //   });
+  // ngOnInit(): void { //Check the users db
+  //   this.authService.getUser('http://localhost:3000/login').subscribe(
+  //     (user: User)=>{
+  //       console.log(user);
+  //     }
+  //   )
   // }
+  
 }

@@ -7,7 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   constructor(private httpClient: HttpClient) { }
-  get<T>(url: string): Observable<T>{
+  get<T>(url: string): Observable<T>{ 
     return this.httpClient.get<T>(url) as Observable<T>;
+  }
+  post<T>(url: string, data: any): Observable<T> {
+    return this.httpClient.post<T>(url, data);
   }
 }

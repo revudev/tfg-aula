@@ -1,0 +1,47 @@
+<main>
+  <div class="flex justify-center items-center h-screen">
+    <div class="w-full max-w-xs">
+      <h2 class="text-2xl font-bold mb-4">Login</h2>
+      <form [formGroup]="contactForm" (ngSubmit)="$event.preventDefault();" (submit)="login()"  
+            class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-6">
+          <span class="p-float-label">
+            <input type="text" id="username" name="username" [(ngModel)]="username" 
+                  class=" shadow appearance-none border rounded w-full py-2 px-3 
+                  text-gray-700 leading-tight focus:outline-none focus:shadow-outline" formControlName="senderName"
+            >
+            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username or email</label>
+          </span>
+          @if (contactForm.get('senderName')?.invalid && 
+              (contactForm.get('senderName')?.dirty || contactForm.get('senderName')?.touched)) {
+            @if (contactForm.get('senderName')?.hasError('required')){
+              <div> <small class="text-red-600">This field is required</small> </div>
+            }
+          }
+        </div>
+        <div class="mb-6">
+          <span class="p-float-label">
+            <input type="password" id="password" name="password" [(ngModel)]="password" 
+                  class=" shadow appearance-none border rounded w-full py-2 px-3 
+                  text-gray-700 leading-tight focus:outline-none focus:shadow-outline" formControlName="senderPassword"
+            >
+            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+          </span>
+          @if (contactForm.get('senderPassword')?.invalid && 
+              (contactForm.get('senderPassword')?.dirty || contactForm.get('senderPassword')?.touched)) {
+            <div>
+              @if(contactForm.get('senderPassword')?.hasError('required')){
+                <small class="text-red-600">This field is required</small>
+              }
+            </div>
+          }
+        </div>
+        <div class="flex items-center justify-between">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold 
+                                py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

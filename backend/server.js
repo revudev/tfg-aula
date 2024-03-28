@@ -24,4 +24,22 @@ app.get('/login', (req, res) => {
   });
 });
 
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  fs.readFile('db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error interno del servidor');
+    }
+
+    const users = JSON.parse(data).items;
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) { res.status(200).json({ message: 'Login successful', user }); } 
+    else {      res.status(401).json({ message: ' Invalid user or password' });
+    }
+  });
+});
+
 app.listen(port, () => { console.log(`Server listening at http://localhost:${port}`); });
