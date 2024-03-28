@@ -1,0 +1,6 @@
+{
+  "items": [
+    {"id":1,"name":"Alen Jouse","email":"alen@gmail.com", "type": "teacher"},
+    {"id":2,"name":"Guar Benifer","email":"guar@gmail.com", "type": "student"}
+  ]
+}

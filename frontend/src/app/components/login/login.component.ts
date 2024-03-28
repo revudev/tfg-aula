@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { FormsModule } from '@angular/forms';
+import { User } from '../../../types';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule],
   template: `
     <main>
-      <form (ngSubmit)="onSubmit()">
+      <!-- <form (ngSubmit)="onSubmit()">
         <div>
           <label for="username">Nombre de usuario:</label>
           <input type="text" id="username" name="username" [(ngModel)]="credentials.username" required>
@@ -18,7 +19,7 @@ import { FormsModule } from '@angular/forms';
           <input type="password" id="password" name="password" [(ngModel)]="credentials.password" required>
         </div>
         <button type="submit">Iniciar sesión</button>
-      </form>
+      </form> -->
     </main>
   `,
   styles: ``
@@ -27,15 +28,23 @@ export class LoginComponent {
   
   constructor(private authService: AuthService) {}
 
-  credentials = { username: '', password: '' };
-
-  onSubmit() {
-    this.authService.login(this.credentials).subscribe({
-      next: (response) => {
-        console.log('Respuesta del backend:', response);
-        // Agregar el token JWT en el localStorage aquí
-      },
-      error: (error) => { console.error('Error de autenticación:', error); }
-    });
+  ngOnInit(): void {
+    this.authService.getUser('http://localhost:3000/login').subscribe(
+      (user: User)=>{
+        console.log(user);
+      }
+    )
   }
+
+  // credentials = { username: '', password: '' };
+
+  // onSubmit() {
+  //   this.authService.login(this.credentials).subscribe({
+  //     next: (response) => {
+  //       console.log('Respuesta del backend:', response);
+  //       // Agregar el token JWT en el localStorage aquí
+  //     },
+  //     error: (error) => { console.error('Error de autenticación:', error); }
+  //   });
+  // }
 }

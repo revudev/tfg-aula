@@ -14,9 +14,8 @@ const corsOptions = { // Allow request from localhost:4200
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.get('/login.php', (req, res) => {
-  // Lee el archivo login.php
-  fs.readFile('login.php', 'utf8', (err, data) => {
+app.get('/login', (req, res) => {
+  fs.readFile('db.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Error interno del servidor');
