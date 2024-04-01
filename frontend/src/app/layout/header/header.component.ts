@@ -7,12 +7,18 @@ import { AuthService } from '../../../service/auth.service';
   standalone: true,
   imports: [RouterModule],
   template: `
-    <header class="fixed top-0 left-0 w-full z-10 p-2 bg-dark-blue-900">
+    <header class="fixed top-0 left-0 w-full z-10 p-2 bg-dark-blue-600 bg-opacity-85 border-b-2 border-gray-800">
       <nav class="px-4 lg:px-6 py-2.5 text-white">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <div class="flex items-center">
-            <img src="../assets/logoAula.png" class="rounded-full mr-3 h-6 sm:h-9" alt="Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Aula Emprende</span>
+            <a href="/" class="flex items-center py-2 pr-4 pl-3 border-b border-gray-500 
+                lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0
+                shadow-[0_5px_0_rgb(0,0,0)] hover:shadow-[0_2px_0px_rgb(0,0,0)] text-black bg-dark-blue-500 
+                ease-out hover:translate-y-1 transition-all rounded" 
+              aria-current="page">
+              <img src="../assets/logoAula.png" class="rounded-full mr-3 h-6 sm:h-9" alt="Logo" />
+              <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Aula Emprende</span>
+            </a>
           </div>
           <div class="flex items-center lg:order-2">
             @if (userLogged) {
@@ -42,7 +48,6 @@ import { AuthService } from '../../../service/auth.service';
                   "
               >Login</a>
             }
-
             <button type="button" class="inline-flex items-center p-2 ml-1 text-sm rounded-lg lg:hidden 
               hover:bg-dark-blue-500 focus:outline-none" aria-expanded="false" (click)="toggleMobileMenu()">
             
@@ -62,38 +67,45 @@ import { AuthService } from '../../../service/auth.service';
               lg:w-auto lg:order-1" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
-                <!--Cargar la pagina de bienvenida home-->
                 <a routerLink="/" routerLinkActive="active" aria-current="page" 
-                class="block py-2 pr-4 pl-3 border-b border-gray-500 
-                  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 " 
-                 aria-current="page">Inicio</a>
+                  class=" 
+                    block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
+                    duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
+                  " 
+                  aria-current="page">Inicio</a>
               </li>
               <li>
-                <!--Cargar la pagina algun contenido-->
-                <a href="#" class="block py-2 pr-4 pl-3 border-b border-gray-100 
-                  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0
-                  lg:dark:hover:bg-transparent">Contenido1</a>
+                <a routerLink="/" routerLinkActive="active" aria-current="page" 
+                  class=" 
+                    block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
+                    duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
+                  " 
+                  aria-current="page">Contenido1</a>
               </li>
               <li>
-                <!--Cargar la pagina algun contenido-->
-                <a href="#" class="
-                  block py-2 pr-4 pl-3 border-b border-gray-100 
-                  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 
-                  ">Contenido2</a>
+                <a routerLink="/" routerLinkActive="active" aria-current="page" 
+                  class=" 
+                    block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
+                    duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
+                  " 
+                  aria-current="page">Contenido2</a>
               </li>
               @if(userLogged){
                 <li>
-                  <!--Cargar la pagina del plan-->
                   <a routerLink="/plan" routerLinkActive="active" aria-current="page" 
-                    class="block py-2 pr-4 pl-3 border-b border-gray-100 
-                    hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" 
-                    aria-current="page">Crear tu plan</a>
+                    class=" 
+                      block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
+                      duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
+                    " 
+                    aria-current="page">Crea tu plan</a>
                 </li>
                 <li>
-                  <!--Cargar la pagina de eventos-->
                   <a routerLink="/events" routerLinkActive="active" aria-current="page" 
-                    class="block py-2 pr-4 pl-3 border-b border-gray-100 
-                    hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 " aria-current="page">Eventos</a>
+                    class=" 
+                      block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
+                      duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
+                    " 
+                    aria-current="page">Eventos</a>
                 </li>
               }
               <!--Check if user is admin add functionality?-->
@@ -115,11 +127,8 @@ export class HeaderComponent {
     this.currentUser = this.authService.getUserFromLocalStorage();
     this.userLogged = !!this.currentUser;
   }
-  toggleDropdown(): void {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
-  logout(): void {
-    this.authService.logout();
-  }
-  toggleMobileMenu() { this.isMobileMenuOpen = !this.isMobileMenuOpen; }
+  logout(): void { this.authService.logout(); }
+
+  toggleDropdown(): void { this.dropdownOpen     = !this.dropdownOpen; }
+  toggleMobileMenu() {     this.isMobileMenuOpen = !this.isMobileMenuOpen; }
 }
