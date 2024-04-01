@@ -24,7 +24,14 @@ export class LoginComponent {
   
   login(): void {
     this.authService.login(this.username, this.password).subscribe({
-      next: (response) => { console.log('Respuesta del backend:', response); },
+      next: (response) => { 
+        console.log('Respuesta del backend:', response); 
+        if (response.user) {
+          this.authService.setUserInLocalStorage(response.user);
+          // Redirect to home
+          window.location.reload();
+        }
+      },
       error: (error) => { console.error('Error de autenticación:', error  ); }      
     }
     );

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,13 +15,32 @@ import { RouterModule } from '@angular/router';
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Aula Emprende</span>
           </div>
           <div class="flex items-center lg:order-2">
-
             @if (userLogged) {
-              <!--Implementar la logica de cerrar sesion-->
+              <div class="relative w-full group">
+                <button class="py-2.5 px-3 w-full md:text-sm text-site bg-transparent peer 
+                  flex items-center justify-between rounded 
+                font-semibold">{{ currentUser.name }}</button>
+                <div class=" absolute z-[99] top-[100%] left-[50%] translate-x-[-50%] rounded-md overflow-hidden shadow-lg 
+                  min-w-[200px] w-max peer-focus:visible peer-focus:opacity-100 opacity-0 invisible duration-200 p-1 
+                  bg-dark-blue-700 border border-dimmed text-xs md:text-sm
+                ">
+                  <div class="w-full block cursor-pointer hover:bg-dark-blue-900 px-3 py-2 rounded-md">
+                    <a routerLink="/message" routerLinkActive="active" aria-current="page">Mensajes</a>
+                  </div>
+                  <div class="w-full block cursor-pointer hover:bg-dark-blue-900 px-3 py-2 rounded-md">
+                    <a routerLink="/perfil" routerLinkActive="active" aria-current="page">Perfil</a>
+                  </div>
+                  <div class="w-full block cursor-pointer hover:bg-dark-blue-900 px-3 py-2 rounded-md">
+                    <button (click)="logout();">Logout</button>
+                  </div>
+                </div>
+              </div>
             }@else {
-              <a routerLink="/login" routerLinkActive="active" aria-current="page" class="text-white 
-                  hover:bg-dark-blue-500 focus:ring-4 rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-              >LogIn</a>
+              <a routerLink="/login" routerLinkActive="active" aria-current="page" class="
+                  text-white hover:bg-dark-blue-500 focus:ring-4 rounded-lg px-4 lg:px-5 py-2 
+                  lg:py-2.5 mr-2 focus:outline-none
+                  "
+              >Login</a>
             }
 
             <button type="button" class="inline-flex items-center p-2 ml-1 text-sm rounded-lg lg:hidden 
@@ -61,20 +81,22 @@ import { RouterModule } from '@angular/router';
                   hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 
                   ">Contenido2</a>
               </li>
-              <li>
-                <!--Cargar la pagina del plan-->
-                <a routerLink="/plan" routerLinkActive="active" aria-current="page" 
-                  class="block py-2 pr-4 pl-3 border-b border-gray-100 
-                  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" 
-                  aria-current="page">Crear tu plan</a>
-              </li>
-              <li>
-                <!--Cargar la pagina de eventos-->
-                <a routerLink="/events" routerLinkActive="active" aria-current="page" 
-                  class="block py-2 pr-4 pl-3 border-b border-gray-100 
-                  hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 " aria-current="page">Eventos</a>
-              </li>
-              <!--Comprobar si user es admin y add functionality?-->
+              @if(userLogged){
+                <li>
+                  <!--Cargar la pagina del plan-->
+                  <a routerLink="/plan" routerLinkActive="active" aria-current="page" 
+                    class="block py-2 pr-4 pl-3 border-b border-gray-100 
+                    hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0" 
+                    aria-current="page">Crear tu plan</a>
+                </li>
+                <li>
+                  <!--Cargar la pagina de eventos-->
+                  <a routerLink="/events" routerLinkActive="active" aria-current="page" 
+                    class="block py-2 pr-4 pl-3 border-b border-gray-100 
+                    hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 " aria-current="page">Eventos</a>
+                </li>
+              }
+              <!--Check if user is admin add functionality?-->
             </ul>
           </div>
         </div>
@@ -86,6 +108,18 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   userLogged: boolean = false;
   isMobileMenuOpen = false;
+  currentUser: any;
+  dropdownOpen: boolean = false;
 
+  constructor(private authService: AuthService) {
+    this.currentUser = this.authService.getUserFromLocalStorage();
+    this.userLogged = !!this.currentUser;
+  }
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+  logout(): void {
+    this.authService.logout();
+  }
   toggleMobileMenu() { this.isMobileMenuOpen = !this.isMobileMenuOpen; }
 }
