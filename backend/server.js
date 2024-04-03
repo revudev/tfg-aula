@@ -31,7 +31,7 @@ connection.connect(
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   
-  const query = `SELECT * FROM Users WHERE name = ? AND password = ?`;
+  const query = `SELECT id, name, email, user_type FROM Users WHERE name = ? AND password = ?`;
 
   connection.query(query, [username, password], (error, results) => {
     if (error) {
