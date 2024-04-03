@@ -4,11 +4,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, AutoCompleteModule],
   templateUrl: 'login.component.html',
+  styleUrls: ['login.component.css']
 })
 export class LoginComponent {
   

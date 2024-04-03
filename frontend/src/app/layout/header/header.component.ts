@@ -31,9 +31,6 @@ import { AuthService } from '../../../service/auth.service';
                   bg-dark-blue-700 border border-dimmed text-xs md:text-sm
                 ">
                   <div class="w-full block cursor-pointer hover:bg-dark-blue-900 px-3 py-2 rounded-md">
-                    <a routerLink="/message" routerLinkActive="active" aria-current="page">Mensajes</a>
-                  </div>
-                  <div class="w-full block cursor-pointer hover:bg-dark-blue-900 px-3 py-2 rounded-md">
                     <a routerLink="/perfil" routerLinkActive="active" aria-current="page">Perfil</a>
                   </div>
                   <div class="w-full block cursor-pointer hover:bg-dark-blue-900 px-3 py-2 rounded-md">
@@ -67,28 +64,28 @@ import { AuthService } from '../../../service/auth.service';
               lg:w-auto lg:order-1" id="mobile-menu-2">
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
-                <a routerLink="/" routerLinkActive="active" aria-current="page" 
+                <a routerLink="/iniciarrhh" routerLinkActive="active" aria-current="page" 
                   class=" 
                     block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
                     duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
                   " 
-                  aria-current="page">Inicio</a>
+                  aria-current="page">Iniciativa y RRHH</a>
               </li>
               <li>
-                <a routerLink="/" routerLinkActive="active" aria-current="page" 
+                <a routerLink="/mercamarke" routerLinkActive="active" aria-current="page" 
                   class=" 
                     block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
                     duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
                   " 
-                  aria-current="page">Contenido1</a>
+                  aria-current="page">Mercado y Marketing</a>
               </li>
               <li>
-                <a routerLink="/" routerLinkActive="active" aria-current="page" 
+                <a routerLink="/gestions" routerLinkActive="active" aria-current="page" 
                   class=" 
                     block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
                     duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
                   " 
-                  aria-current="page">Contenido2</a>
+                  aria-current="page">Gestiones</a>
               </li>
               @if(userLogged){
                 <li>
