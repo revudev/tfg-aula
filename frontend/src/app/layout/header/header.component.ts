@@ -107,7 +107,16 @@ import { AuthService } from '../../../service/auth.service';
                     " 
                     aria-current="page">Eventos</a>
                 </li>
+                
               }
+              <li>
+                <a routerLink="/contact" routerLinkActive="active" aria-current="page" 
+                  class=" 
+                    block pr-4 pl-3 border-b border-gray-800 rounded-full transition 
+                    duration-300 hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105
+                  " 
+                  aria-current="page">Contactanos</a>
+              </li>
               <!--Check if user is admin add functionality?-->
             </ul>
           </div>
