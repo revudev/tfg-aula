@@ -3,6 +3,7 @@ import { AuthService } from '../../../service/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 })
 export class LoginComponent {
   
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   username: string = '';
   password: string = '';
@@ -30,8 +31,9 @@ export class LoginComponent {
         console.log('Respuesta del backend:', response); 
         if (response.user) {
           this.authService.setUserInLocalStorage(response.user);
-          // Redirect to home
-          window.location.reload();
+          this.router.navigate(['/perfil']).then(()=>{
+            setTimeout(() => { window.location.reload(); }, 500);
+          });
         }
       },
       error: (error) => { console.error('Error de autenticación:', error  ); }      

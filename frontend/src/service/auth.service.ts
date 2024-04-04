@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,16 @@ import { Observable } from 'rxjs';
 
 export class AuthService {
 
-  constructor(private apiService: ApiService){}
+  constructor(private apiService: ApiService, private router: Router){}
 
   login(username: string, password: string): Observable<any> {
     return this.apiService.post('http://localhost:3000/login', { username, password });
   }
   logout(): void { 
     localStorage.removeItem('currentUser'); 
-    //Redirect to home
-    window.location.reload();
+    this.router.navigate(['/']).then(()=>{
+      setTimeout(() => { window.location.reload(); }, 500);
+    });
   }
 
   setUserInLocalStorage(user: any): void {
