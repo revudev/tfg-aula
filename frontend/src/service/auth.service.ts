@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private apiService: ApiService, private router: Router){}
 
   login(username: string, password: string): Observable<any> {
-    return this.apiService.post('https://back-lemon.vercel.app/login', { username, password });
+    return this.apiService.post('back-lemon.vercel.app/login', { username, password });
   }
   logout(): void {
     localStorage.removeItem('currentUser');

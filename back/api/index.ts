@@ -5,10 +5,11 @@ const mysql = require("mysql");
 const app = express();
 const port = 4000;
 
-const corsOptions = { // Allow request from localhost:4200
-  origin: "https://leid04.github.io/tfg-aula/",
+const corsOptions = { 
+  origin: "leid04.github.io/tfg-aula",
   optionsSuccessStatus: 204,
-  methods: "GET, POST, PUT, DELETE", //For the future
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true
 };
 
 app.use(cors(corsOptions));
