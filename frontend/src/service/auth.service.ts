@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable'
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.apiService.post('http://localhost:3000/login', { username, password });
   }
-  logout(): void { 
-    localStorage.removeItem('currentUser'); 
+  logout(): void {
+    localStorage.removeItem('currentUser');
     this.router.navigate(['/']).then(()=>{
       setTimeout(() => { window.location.reload(); }, 500);
     });
@@ -31,4 +31,4 @@ export class AuthService {
   // getUser = (url: string): Observable<User> => {
   //   return this.apiService.get(url);
   // }
-} 
+}

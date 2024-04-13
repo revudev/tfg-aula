@@ -1,6 +1,0 @@
-{
-  "items": [
-    {"id":1,"username":"alen","email":"alen@gmail.com", "type": "teacher", "password":"1234"},
-    {"id":2,"username":"guar","email":"guar@gmail.com", "type": "student", "password":"123"}
-  ]
-}

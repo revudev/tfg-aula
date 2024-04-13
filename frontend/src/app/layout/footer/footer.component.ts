@@ -42,7 +42,6 @@ import { Component } from '@angular/core';
           <a routerLink="/gestions" routerLinkActive="active" aria-current="page" class="text-white text-lg mr-4 transition duration-500 opacity-75 hover:opacity-100">Gestiones</a>
         </li>
       </ul>
-      <p class="text-white text-lg font-light">&copy;2024 Todos los derechos reservados| Denys Revutskyi</p>
     </footer>
   `,
   styles: ``

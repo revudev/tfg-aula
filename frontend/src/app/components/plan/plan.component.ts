@@ -5,9 +5,11 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <p>
-      plan works!
-    </p>
+    <main>
+      <p>
+        plan works!
+      </p>
+    </main>
   `,
   styles: ``
 })
