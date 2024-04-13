@@ -6,7 +6,7 @@ const app = express();
 const port = 4000;
 
 const corsOptions = { // Allow request from localhost:4200
-  origin: "http://localhost:4200",
+  origin: "https://leid04.github.io/tfg-aula/",
   optionsSuccessStatus: 204,
   methods: "GET, POST, PUT, DELETE", //For the future
 };
