@@ -3,13 +3,12 @@ const cors = require("cors");
 const mysql = require("mysql");
 
 const app = express();
-const port = 4000;
+const port = 3000;
 
 const corsOptions = { 
-  origin: "leid04.github.io/tfg-aula",
+  origin: "http://localhost:4200",
   optionsSuccessStatus: 204,
-  methods: "GET, POST, PUT, DELETE",
-  credentials: true
+  methods: "GET, POST, PUT, DELETE"
 };
 
 app.use(cors(corsOptions));
