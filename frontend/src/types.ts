@@ -1,10 +1,16 @@
-import { HttpContext, HttpHeaders, HttpParams } from "@angular/common/http";
+// import { HttpContext, HttpHeaders, HttpParams } from "@angular/common/http";
 
 export interface User {
   id?: number;
   name: string;
   email: string;
   type: string;
+}
+export interface Evento {
+  Date: Date;
+  Event: string;
+  Description: string;
+  id_user: number;
 }
 // export interface Options{
 //   headers?: HttpHeaders | {

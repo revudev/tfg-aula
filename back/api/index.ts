@@ -46,5 +46,23 @@ app.post('/login', (req, res) => {
   });
 });
 
+app.post('/addEvent', (req, res) => {
+  const { Date, Event, Description, id_user } = req.body;
+  
+  const query = `INSERT INTO Events (Date, Event, Description, id_user) VALUES (?, ?, ?, ?)`;
+
+  connection.query(query, [Date, Event, Description, id_user], (error, results) => {
+    if (error) {
+      console.error("Error de la consulta:", error);
+      return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+    if (results.affectedRows > 0) {
+      res.status(200).json({ message: 'Evento agregado exitosamente!' });
+    } else {
+      res.status(401).json({ message: 'Parámetro inválido o este evento ya existe' });
+    }
+  });
+});
+
 app.listen(port, () => { console.log(`Server listening at http://localhost:${port}`); });
 module.exports = app;

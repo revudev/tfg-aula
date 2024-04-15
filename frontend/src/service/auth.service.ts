@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/internal/Observable'
 import { Router } from '@angular/router';
+import { Evento } from '../types';
 
-@Injectable({
-  providedIn: 'root'
-})
+const url = 'http://localhost:3000'; //https://back-lemon.vercel.app
 
+@Injectable({ providedIn: 'root'})
 export class AuthService {
 
   constructor(private apiService: ApiService, private router: Router){}
 
   login(username: string, password: string): Observable<any> {
-    return this.apiService.post('http://localhost:3000/login', { username, password });
+    return this.apiService.post(`${url}/login`, { username, password });
+  }
+  addEvent(evento: Evento): Observable<any> {
+    return this.apiService.post(`${url}/addEvent`, evento);
   }
   logout(): void {
     localStorage.removeItem('currentUser');
