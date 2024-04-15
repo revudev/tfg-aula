@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MAT_DATE_LOCALE} from '@angular/material/core';
 import {provideNativeDateAdapter} from '@angular/material/core';
@@ -76,7 +76,10 @@ import { Evento } from '../../../types';
   `,
   styles: `.tam { width: 600px; }`
 })
-export class EventsComponent {
+export class EventsComponent implements OnInit{
+
+  ngOnInit(): void { this.getEvent(); }
+
   selected: Date | null = new Date;
   user = this.authService.getUserFromLocalStorage().user_type;
   userAdmin = this.user == 'admin' || this.user =='teacher';
@@ -106,6 +109,12 @@ export class EventsComponent {
       error: (error) => { console.error('Error, no he podido añadir el evento:', error  ); }
     }
     );
+  }
+  getEvent(){
+    this.authService.getEvent().subscribe({
+      next: (response) => { console.log("Respuesta del backend:", response); },
+      error: (error) => { console.error('Error, no he podido obtener los eventos:', error  ); }
+    });
   }
   toggleForm(){ this.showForm = !this.showForm; }
   constructor(private authService: AuthService) { }

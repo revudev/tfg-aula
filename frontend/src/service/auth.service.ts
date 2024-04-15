@@ -17,6 +17,9 @@ export class AuthService {
   addEvent(evento: Evento): Observable<any> {
     return this.apiService.post(`${url}/addEvent`, evento);
   }
+  getEvent(): Observable<any>{
+    return this.apiService.get(`${url}/getEvent`);
+  }
   logout(): void {
     localStorage.removeItem('currentUser');
     this.router.navigate(['/']).then(()=>{

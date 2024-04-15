@@ -64,5 +64,20 @@ app.post('/addEvent', (req, res) => {
   });
 });
 
+app.get('/getEvent', (req, res) => {
+  const query = `SELECT * FROM Events`;
+  connection.query(query, (error, results) => {
+    if(error){
+      console.error("Error de la consulta:", error);
+      return res.status(500).json({ message: 'Error interno del servidor' });
+    }
+    if (results.length > 0) {
+      res.status(200).json({ message: 'Eventos encontrados', events: results });
+    } else {
+      res.status(401).json({ message: 'No se encontraron eventos' });
+    }
+  })
+})
+
 app.listen(port, () => { console.log(`Server listening at http://localhost:${port}`); });
 module.exports = app;
