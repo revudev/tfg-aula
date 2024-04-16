@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable'
 import { Router } from '@angular/router';
 import { Evento } from '../types';
 
-const url = 'http://localhost:3000'; //https://back-lemon.vercel.app
+const url = 'http://localhost:4000'; //https://back-lemon.vercel.app  (check cors error and try again)
 
 @Injectable({ providedIn: 'root'})
 export class AuthService {
@@ -34,7 +34,4 @@ export class AuthService {
     const user = localStorage.getItem('currentUser');
     return user ? JSON.parse(user) : null;
   }
-  // getUser = (url: string): Observable<User> => {
-  //   return this.apiService.get(url);
-  // }
 }
