@@ -27,37 +27,60 @@ import { Evento } from '../../../types';
             <div class="max-w-screen-lg mx-auto p-5 text-white">
               <div class="flex justify-between">
                 <h1 class="text-3xl font-bold mb-5">Nuestros eventos:</h1>
-                @if (!userAdmin) {
+                @if (userAdmin) {
                   <button (click)="toggleForm()" class="px-2 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600">Añadir evento</button>
                 }
               </div>
               @if(showForm){
-<!-- ------------------------------------------------------------Add errors  --------------------------------------------->
                 <form (submit)="addEvent()" [formGroup]="eventForm" (ngSubmit)="$event.preventDefault();">
                   <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                              for="nombre">Nombre del evento</label>
-                      <input type="text" [(ngModel)]="evento.Event" formControlName="senderNameEv"
-                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200
-                                    rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
-                                    focus:border-gray-500" id="nombre" placeholder="Nombre del evento">
+                      <span>
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="nombre">Nombre del evento</label>
+                        <input type="text" [(ngModel)]="evento.Event" formControlName="senderNameEv"
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200
+                        rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
+                        focus:border-gray-500" id="nombre" placeholder="Nombre del evento">
+                      </span>
+                      @if (eventForm.get('senderNameEv')?.invalid &&
+                          (eventForm.get('senderNameEv')?.dirty || eventForm.get('senderNameEv')?.touched)) {
+                        @if (eventForm.get('senderNameEv')?.hasError('required')){
+                          <div> <small class="text-red-600">No puedes dejar este campo en blanco</small> </div>
+                        }
+                      }
                     </div>
                     <div class="w-full md:w-1/2 px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            for="descripcion"  >Descripción</label>
-                      <input type="text" [(ngModel)]="evento.Description"
-                             class="appearance-none block w-full bg-gray-200 text-gray-700 border
-                            border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
-                            focus:border-gray-500" id="descripcion" placeholder="Descripción"
-                              formControlName="senderDesc">
+                      <span>
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                              for="descripcion"  >Descripción</label>
+                        <input type="text" [(ngModel)]="evento.Description"
+                               class="appearance-none block w-full bg-gray-200 text-gray-700 border
+                              border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
+                              focus:border-gray-500" id="descripcion" placeholder="Descripción"
+                                formControlName="senderDesc">
+                      </span>
+                      @if (eventForm.get('senderDesc')?.invalid &&
+                          (eventForm.get('senderDesc')?.dirty || eventForm.get('senderDesc')?.touched)) {
+                        @if (eventForm.get('senderDesc')?.hasError('required')){
+                          <div> <small class="text-red-600">No puedes dejar este campo en blanco</small> </div>
+                        }
+                      }
                     </div>
                     <div class="w-full md:w-1/2 px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                             for="fecha">Fecha</label>
-                      <input type="date" [(ngModel)]="evento.Date" class="appearance-none block w-full bg-gray-200 text-gray-700 border
-                           border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
-                           focus:border-gray-500" id="fecha" placeholder="Fecha" formControlName="senderData">
+                      <span>
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                               for="fecha">Fecha</label>
+                        <input type="date" [(ngModel)]="evento.Date" class="appearance-none block w-full bg-gray-200 text-gray-700 border
+                             border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
+                             focus:border-gray-500" id="fecha" placeholder="Fecha" formControlName="senderData">
+                      </span>
+                      @if (eventForm.get('senderData')?.invalid &&
+                          (eventForm.get('senderData')?.dirty || eventForm.get('senderData')?.touched)) {
+                        @if (eventForm.get('senderData')?.hasError('required')){
+                          <div> <small class="text-red-600">No puedes dejar este campo en blanco</small> </div>
+                        }
+                      }
                     </div>
                   </div>
                   <button [disabled]="eventForm.invalid" type="submit" class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600">Enviar</button>
