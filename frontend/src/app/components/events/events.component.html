@@ -61,10 +61,11 @@
             <mat-card class="tam">
               <mat-calendar [(selected)]="selected" [dateClass]="dateClass"></mat-calendar>
             </mat-card>
-            <p>Selected date: {{selected}}</p>
-            @for (item of this.eventos; track item.id_user;) {
-              <p>{{ item.Date }} {{item.Description}} {{item.Event}} {{item.id_user}}</p>
-            }
+            <div class="max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-md">
+              <div class="p-4">
+                <p class="text-xl font-semibold text-gray-800">{{ getSelectedEventDescription() }}</p>
+              </div>
+            </div>
           }
         </div>
       </div>

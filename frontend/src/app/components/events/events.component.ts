@@ -19,16 +19,18 @@ import { Evento } from '../../../types';
   ],
   standalone: true,
   templateUrl: 'events.component.html',
-  styles: `.tam { width: 600px; } .event-date{ background: yellow;}`
+  styles: `.tam { width: 600px; }`
 })
 export class EventsComponent implements OnInit{
-  eventos: Evento[] = [];
+
   ngOnInit(): void { this.getEvent(); }
 
-  selected: Date | null = new Date;
+  eventos: Evento[] = [];
+  selected: Date | null = null;
+  showForm = false;
+
   user = this.authService.getUserFromLocalStorage().user_type;
   userAdmin = this.user == 'admin' || this.user =='teacher';
-  showForm = false;
 
   eventForm = new FormGroup({
     senderNameEv: new FormControl('', Validators.required),
@@ -43,13 +45,23 @@ export class EventsComponent implements OnInit{
     id_user: this.authService.getUserFromLocalStorage().id
   };
 
+  getSelectedEventDescription(): string {
+    if (!this.selected) { this.selected = new Date(); }; // If not selected then day of the week
+    if (!(this.selected instanceof Date)) { this.selected = new Date(this.selected); }
+
+    const selectedEvent = this.eventos
+      .find(evento => new Date(evento.Date).toDateString() === this.selected!.toDateString());
+
+    this.selected = new Date(this.selected); // Restart the event for this day
+    return selectedEvent ? selectedEvent.Description : '';
+  }
   addEvent(){
     this.authService.addEvent(this.evento).subscribe({
       next: (response) => {
-        console.log('Respuesta del backend:', response);
+        // console.log('Respuesta del backend:', response);
         this.eventForm.reset();
         this.showForm = false;
-        // Informar de el evento se ha creado correctamente
+        // TODO: Informar de el evento se ha creado correctamente
       },
       error: (error) => { console.error('Error, no he podido añadir el evento:', error  ); }
     }
@@ -58,14 +70,14 @@ export class EventsComponent implements OnInit{
   getEvent(){
     this.authService.getEvent().subscribe({
       next: (response) => {
-        console.log("Respuesta del backend:", response);
-        this.eventos = response.events;
+        // console.log("Respuesta del backend:", response);
+        this.eventos = response.events.map((evento: Evento) => ({ ...evento, Date: new Date(evento.Date)}));
       },
       error: (error) => { console.error('Error, no he podido obtener los eventos:', error  ); }
     });
   }
   dateClass = (date: Date): string => {
-    // Add events to the calendar
+    // TODO: Add class to the calendar
     return '';
   }
   toggleForm(){ this.showForm = !this.showForm; }
