@@ -1,0 +1,73 @@
+<div class="flex justify-center p-5">
+  <div class="p-8 overflow-hidden bg-blue-400 rounded-lg shadow-md">
+    <div class="max-w-screen-lg p-5 mx-auto">
+      <div class="flex items-center justify-center">
+        <div class="max-w-screen-lg p-5 mx-auto text-white">
+          <div class="flex justify-between">
+            <h1 class="mb-5 text-3xl font-bold">Nuestros eventos:</h1>
+            @if (userAdmin) {
+              <button (click)="toggleForm()" class="px-2 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600">Añadir evento</button>
+            }
+          </div>
+          @if(showForm){
+            <form (submit)="addEvent()" [formGroup]="eventForm" (ngSubmit)="$event.preventDefault();">
+              <div class="flex flex-wrap mb-6 -mx-3">
+                <div class="w-full px-3 mb-6 md:w-1/2 md:mb-0">
+                  <span>
+                    <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                            for="nombre">Nombre del evento</label>
+                    <input type="text" [(ngModel)]="evento.Event" formControlName="senderNameEv"
+                    class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" id="nombre" placeholder="Nombre del evento">
+                  </span>
+                  @if (eventForm.get('senderNameEv')?.invalid &&
+                      (eventForm.get('senderNameEv')?.dirty || eventForm.get('senderNameEv')?.touched)) {
+                    @if (eventForm.get('senderNameEv')?.hasError('required')){
+                      <div> <small class="text-red-600">No puedes dejar este campo en blanco</small> </div>
+                    }
+                  }
+                </div>
+                <div class="w-full px-3 md:w-1/2">
+                  <span>
+                    <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                          for="descripcion"  >Descripción</label>
+                    <input type="text" [(ngModel)]="evento.Description"
+                            class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" id="descripcion" placeholder="Descripción"
+                            formControlName="senderDesc">
+                  </span>
+                  @if (eventForm.get('senderDesc')?.invalid &&
+                      (eventForm.get('senderDesc')?.dirty || eventForm.get('senderDesc')?.touched)) {
+                    @if (eventForm.get('senderDesc')?.hasError('required')){
+                      <div> <small class="text-red-600">No puedes dejar este campo en blanco</small> </div>
+                    }
+                  }
+                </div>
+                <div class="w-full px-3 md:w-1/2">
+                  <span>
+                    <label class="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                            for="fecha">Fecha</label>
+                    <input type="date" [(ngModel)]="evento.Date" class="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500" id="fecha" placeholder="Fecha" formControlName="senderData">
+                  </span>
+                  @if (eventForm.get('senderData')?.invalid &&
+                      (eventForm.get('senderData')?.dirty || eventForm.get('senderData')?.touched)) {
+                    @if (eventForm.get('senderData')?.hasError('required')){
+                      <div> <small class="text-red-600">No puedes dejar este campo en blanco</small> </div>
+                    }
+                  }
+                </div>
+              </div>
+              <button [disabled]="eventForm.invalid" type="submit" class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600">Enviar</button>
+            </form>
+          }@else{
+            <mat-card class="tam">
+              <mat-calendar [(selected)]="selected" [dateClass]="dateClass"></mat-calendar>
+            </mat-card>
+            <p>Selected date: {{selected}}</p>
+            @for (item of this.eventos; track item.id_user;) {
+              <p>{{ item.Date }} {{item.Description}} {{item.Event}} {{item.id_user}}</p>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
