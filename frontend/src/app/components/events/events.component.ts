@@ -60,6 +60,7 @@ export class EventsComponent implements OnInit{
       next: (response) => {
         // console.log('Respuesta del backend:', response);
         this.eventForm.reset();
+        setTimeout(() => { window.location.reload(); }, 500);
         this.showForm = false;
         // TODO: Informar de el evento se ha creado correctamente
       },
