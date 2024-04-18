@@ -11,17 +11,17 @@ import { MercamarkeComponent } from './components/mercamarke/mercamarke.componen
 import { GestionesComponent } from './components/gestiones/gestiones.component';
 
 export const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
 
-  {path: 'iniciarrhh', component: IniciarrhhComponent},
-  {path: 'mercamarke', component: MercamarkeComponent},
-  {path: 'gestions', component: GestionesComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'events', component: EventsComponent},
-  {path: 'plan', component: PlanComponent},
+  { path: 'iniciarrhh', component: IniciarrhhComponent },
+  { path: 'mercamarke', component: MercamarkeComponent },
+  { path: 'gestions', component: GestionesComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'events', component: EventsComponent },
+  { path: 'plan', component: PlanComponent },
 
-  {path: 'perfil', component: PerfilComponent},
+  { path: 'perfil', component: PerfilComponent },
 
-  { path: '**', component: NotFoundComponent}
+  { path: '**', component: NotFoundComponent },
 ];

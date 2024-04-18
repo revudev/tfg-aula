@@ -24,6 +24,7 @@ export class LoginComponent {
 
   username: string = '';
   password: string = '';
+  errorMessage: string | undefined = '';
 
   contactForm = new FormGroup({
     senderName: new FormControl('', Validators.required),
@@ -33,7 +34,6 @@ export class LoginComponent {
   login(): void {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
-        console.log('Respuesta del backend:', response);
         if (response.user) {
           this.authService.setUserInLocalStorage(response.user);
           this.router.navigate(['/perfil']).then(() => {
@@ -42,9 +42,11 @@ export class LoginComponent {
             }, 500);
           });
         }
+        // console.log('Respuesta del backend:', response);
       },
+      // Error in login
       error: (error) => {
-        console.error('Error de autenticación:', error);
+        this.errorMessage = `Credenciales inválidas. Por favor, inténtalo de nuevo.`;
       },
     });
   }

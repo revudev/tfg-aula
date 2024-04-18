@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AppModule } from './app.module';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./layout/header/header.component";
+import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
 @Component({
@@ -14,5 +14,6 @@ import { FooterComponent } from './layout/footer/footer.component';
     <app-footer></app-footer>
   `,
 })
-
-export class AppComponent { title = 'Aula-Emprende'; }
+export class AppComponent {
+  title = 'Aula-Emprende';
+}

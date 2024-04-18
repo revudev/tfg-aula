@@ -13,21 +13,34 @@ import {
   standalone: true,
   imports: [CdkDropList, CdkDrag],
   templateUrl: 'plan.component.html',
-  styleUrl: 'plan.component.css'
+  styleUrl: 'plan.component.css',
 })
 export class PlanComponent {
-  dispo = ['Creatividad', 'Proactividad', 'Resiliencia', 'Innovación', 'Autodirección', 'Determinación', 'Adaptabilidad', 'Liderazgo'];
+  dispo = [
+    'Creatividad',
+    'Proactividad',
+    'Resiliencia',
+    'Innovación',
+    'Autodirección',
+    'Determinación',
+    'Adaptabilidad',
+    'Liderazgo',
+  ];
   eleccion = ['Visión', 'Pasión'];
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
     }
   }

@@ -1,6 +1,9 @@
 <main class="flex items-center justify-center h-screen">
   <div>
-    <h1 class="text-center mb-9">Hola {{currentUser.name}} por favor elige para la seccion de: Iniciativa emprendedora:</h1>
+    <h1 class="text-center mb-9">
+      Hola {{ currentUser.name }} por favor elige para la seccion de: Iniciativa
+      emprendedora:
+    </h1>
     <div class="dispoContainer">
       <h2 class="text-center">Disponible:</h2>
       <div
@@ -9,9 +12,10 @@
         [cdkDropListData]="dispo"
         [cdkDropListConnectedTo]="[eleccionList]"
         class="milist"
-        (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="drop($event)"
+      >
         @for (item of dispo; track item) {
-          <div class="mibox" cdkDrag>{{item}}</div>
+        <div class="mibox" cdkDrag>{{ item }}</div>
         }
       </div>
     </div>
@@ -23,15 +27,24 @@
         [cdkDropListData]="eleccion"
         [cdkDropListConnectedTo]="[dispoList]"
         class="milist"
-        (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="drop($event)"
+      >
         @for (item of eleccion; track item) {
-          <div class="mibox" cdkDrag>{{item}}</div>
+        <div class="mibox" cdkDrag>{{ item }}</div>
         }
       </div>
     </div>
     <div class="flex justify-between text-center">
-      <button class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600">Anterior</button>
-      <button class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600">Siguiente</button>
+      <button
+        class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
+      >
+        Anterior
+      </button>
+      <button
+        class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
+      >
+        Siguiente
+      </button>
     </div>
   </div>
 </main>

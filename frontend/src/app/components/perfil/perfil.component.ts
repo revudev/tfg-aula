@@ -5,14 +5,10 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-  <main>
-    <p>
-      perfil works!
-    </p>
-  </main>
+    <main>
+      <p>perfil works!</p>
+    </main>
   `,
-  styles: ``
+  styles: ``,
 })
-export class PerfilComponent {
-
-}
+export class PerfilComponent {}

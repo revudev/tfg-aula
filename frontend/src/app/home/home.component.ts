@@ -5,7 +5,6 @@ import { HomeModule } from './home.module';
   standalone: true,
   imports: [HomeModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent { 
- }
+export class HomeComponent {}
