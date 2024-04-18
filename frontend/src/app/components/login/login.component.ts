@@ -4,48 +4,48 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { Router } from '@angular/router';
-
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, AutoCompleteModule],
+  imports: [
+    ReactiveFormsModule,
+    AutoCompleteModule,
+    FloatLabelModule,
+    InputTextModule,
+  ],
   templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css']
+  styleUrls: ['login.component.css'],
 })
 export class LoginComponent {
-  
   constructor(private authService: AuthService, private router: Router) {}
 
   username: string = '';
   password: string = '';
-  
+
   contactForm = new FormGroup({
-    senderName:     new FormControl('', Validators.required),
+    senderName: new FormControl('', Validators.required),
     senderPassword: new FormControl('', Validators.required),
-  })
-  
+  });
+
   login(): void {
     this.authService.login(this.username, this.password).subscribe({
-      next: (response) => { 
-        console.log('Respuesta del backend:', response); 
+      next: (response) => {
+        console.log('Respuesta del backend:', response);
         if (response.user) {
           this.authService.setUserInLocalStorage(response.user);
-          this.router.navigate(['/perfil']).then(()=>{
-            setTimeout(() => { window.location.reload(); }, 500);
+          this.router.navigate(['/perfil']).then(() => {
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
           });
         }
       },
-      error: (error) => { console.error('Error de autenticación:', error  ); }      
-    }
-    );
+      error: (error) => {
+        console.error('Error de autenticación:', error);
+      },
+    });
   }
-  // ngOnInit(): void { //Check the users db
-  //   this.authService.getUser('http://localhost:3000/login').subscribe(
-  //     (user: User)=>{
-  //       console.log(user);
-  //     }
-  //   )
-  // }
-  
 }
