@@ -4,16 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const cors = require("cors");
 const mysql = require("mysql");
 const app = (0, express_1.default)();
 const port = 4000;
-const corsOptions = {
-    origin: "http://localhost:4200", // https://aula-emp.vercel.app
-    optionsSuccessStatus: 204,
-    methods: "GET, POST, PUT, DELETE",
-};
-app.use(cors(corsOptions));
 app.use(express_1.default.json());
 require("dotenv").config();
 const connection = mysql.createConnection({
