@@ -24,7 +24,7 @@ import {
   ],
   standalone: true,
   templateUrl: 'events.component.html',
-  styles: `.tam { width: 600px; }`,
+  styleUrl: 'events.component.css',
 })
 export class EventsComponent implements OnInit {
   ngOnInit(): void {
@@ -75,8 +75,7 @@ export class EventsComponent implements OnInit {
           window.location.reload();
         }, 500);
         this.showForm = false;
-        // console.log('Respuesta del backend:', response);
-        // TODO: Informar de el evento se ha creado correctamente
+        alert('El evento ha sido añadido correctamente');
       },
       error: (error) => {
         console.error('Error, no he podido añadir el evento:', error);
@@ -90,7 +89,6 @@ export class EventsComponent implements OnInit {
           ...evento,
           Date: new Date(evento.Date),
         }));
-        // console.log("Respuesta del backend:", response);
       },
       error: (error) => {
         console.error('Error, no he podido obtener los eventos:', error);
@@ -98,7 +96,6 @@ export class EventsComponent implements OnInit {
     });
   }
   dateClass = (date: Date): string => {
-    // TODO: Add class to the calendar
     return '';
   };
   toggleForm() {
