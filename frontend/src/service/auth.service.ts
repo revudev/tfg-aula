@@ -21,6 +21,7 @@ export class AuthService {
   }
   logout(): void {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('eleccionPorTema');
     this.router.navigate(['/']).then(() => {
       setTimeout(() => {
         window.location.reload();
@@ -28,10 +29,10 @@ export class AuthService {
     });
   }
 
-  setUserInLocalStorage(user: any): void {
+  setUserLS(user: any): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
-  getUserFromLocalStorage(): any {
+  getUserLS(): any {
     const user = localStorage.getItem('currentUser');
     return user ? JSON.parse(user) : null;
   }

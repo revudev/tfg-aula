@@ -35,7 +35,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
         if (response.user) {
-          this.authService.setUserInLocalStorage(response.user);
+          this.authService.setUserLS(response.user);
           this.router.navigate(['/perfil']).then(() => {
             setTimeout(() => {
               window.location.reload();

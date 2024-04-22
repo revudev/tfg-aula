@@ -16,7 +16,7 @@ export class HeaderComponent {
   currentUser: any;
 
   constructor(private authService: AuthService) {
-    this.currentUser = this.authService.getUserFromLocalStorage();
+    this.currentUser = this.authService.getUserLS();
     this.userLogged = !!this.currentUser;
   }
   logout(): void {

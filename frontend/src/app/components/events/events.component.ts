@@ -35,7 +35,7 @@ export class EventsComponent implements OnInit {
   selected: Date | null = null;
   showForm = false;
 
-  user = this.authService.getUserFromLocalStorage().user_type;
+  user = this.authService.getUserLS().user_type;
   userAdmin = this.user == 'admin' || this.user == 'teacher';
 
   eventForm = new FormGroup({
@@ -48,7 +48,7 @@ export class EventsComponent implements OnInit {
     Date: new Date(),
     Event: '',
     Description: '',
-    id_user: this.authService.getUserFromLocalStorage().id,
+    id_user: this.authService.getUserLS().id,
   };
 
   getSelectedEventDescription(): string {
