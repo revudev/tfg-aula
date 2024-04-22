@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import {
   CdkDragDrop,
@@ -15,11 +15,8 @@ import {
   templateUrl: 'plan.component.html',
   styleUrl: 'plan.component.css',
 })
-export class PlanComponent {
-  constructor(private authService: AuthService) {
-    this.currentUser = this.authService.getUserLS();
-    this.loadCurrentTheme();
-  }
+export class PlanComponent implements OnInit {
+  constructor(private authService: AuthService) {}
 
   currentUser: any;
   themes = ['Iniciativa emprendedora', 'Mercado y Marketing', 'Gestiones'];
@@ -42,7 +39,14 @@ export class PlanComponent {
       'Gestión de operaciones',
     ],
   };
-  selection: string[] = this.getSelection() || [];
+  selection: string[] = [];
+
+  ngOnInit() {
+    this.currentUser = this.authService.getUserLS();
+    this.loadCurrentTheme();
+    this.loadSelection();
+    this.updateAvailable();
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -60,20 +64,22 @@ export class PlanComponent {
       );
     }
     this.saveSelection();
+    this.updateAvailable();
   }
 
   changeTheme(index: number) {
     if (index >= 0 && index < this.themes.length) {
       this.currentThemeIndex = index;
-      this.selection = [];
-      this.saveSelection();
       this.saveCurrentTheme();
+      this.loadSelection();
+      this.updateAvailable();
     }
   }
 
   previousTheme() {
     this.changeTheme(this.currentThemeIndex - 1);
   }
+
   nextTheme() {
     this.changeTheme(this.currentThemeIndex + 1);
   }
@@ -100,11 +106,17 @@ export class PlanComponent {
     localStorage.setItem('selection', JSON.stringify(this.selection));
   }
 
-  private getSelection(): string[] | null {
+  private loadSelection() {
     const savedSelection = localStorage.getItem('selection');
     if (savedSelection !== null) {
-      return JSON.parse(savedSelection);
+      this.selection = JSON.parse(savedSelection);
     }
-    return null;
+  }
+
+  private updateAvailable() {
+    const currentTheme = this.themes[this.currentThemeIndex];
+    this.available[currentTheme] = this.available[currentTheme].filter(
+      (item: string) => !this.selection.includes(item)
+    );
   }
 }
