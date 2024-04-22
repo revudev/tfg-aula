@@ -1,27 +1,67 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { NotFoundComponent } from './not-found';
-import { ContactComponent } from './components/contact/contact.component';
-import { EventsComponent } from './components/events/events.component';
-import { PlanComponent } from './components/plan/plan.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
-import { IniciarrhhComponent } from './components/iniciarrhh/iniciarrhh.component';
-import { MercamarkeComponent } from './components/mercamarke/mercamarke.component';
-import { GestionesComponent } from './components/gestiones/gestiones.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-
-  { path: 'iniciarrhh', component: IniciarrhhComponent },
-  { path: 'mercamarke', component: MercamarkeComponent },
-  { path: 'gestions', component: GestionesComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'events', component: EventsComponent },
-  { path: 'plan', component: PlanComponent },
-
-  { path: 'perfil', component: PerfilComponent },
-
-  { path: '**', component: NotFoundComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./home/home.component').then((c) => c.HomeComponent),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./components/login/login.component').then(
+        (c) => c.LoginComponent
+      ),
+  },
+  {
+    path: 'perfil',
+    loadComponent: () =>
+      import('./components/perfil/perfil.component').then(
+        (c) => c.PerfilComponent
+      ),
+  },
+  {
+    path: 'iniciarrhh',
+    loadComponent: () =>
+      import('./components/iniciarrhh/iniciarrhh.component').then(
+        (c) => c.IniciarrhhComponent
+      ),
+  },
+  {
+    path: 'mercamarke',
+    loadComponent: () =>
+      import('./components/mercamarke/mercamarke.component').then(
+        (c) => c.MercamarkeComponent
+      ),
+  },
+  {
+    path: 'gestions',
+    loadComponent: () =>
+      import('./components/gestiones/gestiones.component').then(
+        (c) => c.GestionesComponent
+      ),
+  },
+  {
+    path: 'contact',
+    loadComponent: () =>
+      import('./components/contact/contact.component').then(
+        (c) => c.ContactComponent
+      ),
+  },
+  {
+    path: 'events',
+    loadComponent: () =>
+      import('./components/events/events.component').then(
+        (c) => c.EventsComponent
+      ),
+  },
+  {
+    path: 'plan',
+    loadComponent: () =>
+      import('./components/plan/plan.component').then((c) => c.PlanComponent),
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./not-found').then((c) => c.NotFoundComponent),
+  },
 ];
