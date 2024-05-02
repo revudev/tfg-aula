@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
-import { HomeModule } from './home.module';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HomeModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styles: ``,
 })
-export class HomeComponent {}
+export class HomeComponent implements AfterViewInit {
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef;
+  ngAfterViewInit(): void {
+    this.loadVideo();
+  }
+  loadVideo() {
+    const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+    videoElement.src = '../../assets/Success.mp4';
+    videoElement.autoplay = true;
+    videoElement.muted = true;
+    videoElement.loop = true;
+  }
+}
