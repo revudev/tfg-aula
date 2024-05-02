@@ -1,6 +1,8 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Jersey+20+Charted&family=Poiret+One&family=Sedgwick+Ave+Display&family=Slabo+27px&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

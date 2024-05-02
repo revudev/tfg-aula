@@ -10,19 +10,23 @@ import { Component } from '@angular/core';
         <div class="w-full px-4 text-xl leading-normal text-gray-800 md:px-6">
           <div class="font-sans text-gray-800">
             <div class="bg-blue-100 rounded-lg p-4 mb-6">
-              <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1
+                class="text-3xl md:text-4xl font-voll text-gray-900 mb-2 font-bold"
+              >
                 Mercado
               </h1>
-              El mercado es el espacio donde se lleva a cabo la interacción
-              entre compradores y vendedores, determinando los precios y las
-              cantidades de los bienes y servicios intercambiados. Es un
-              concepto fundamental en economía que abarca tanto transacciones
-              físicas como virtuales.<br /><br />
-              Existen diversos tipos de mercado, cada uno con sus
-              características particulares:
+              <p class="font-comfortaa">
+                El mercado es el espacio donde se lleva a cabo la interacción
+                entre compradores y vendedores, determinando los precios y las
+                cantidades de los bienes y servicios intercambiados. Es un
+                concepto fundamental en economía que abarca tanto transacciones
+                físicas como virtuales.<br /><br />
+                Existen diversos tipos de mercado, cada uno con sus
+                características particulares:
+              </p>
             </div>
 
-            <ol class="pl-5 mb-3 list-disc">
+            <ol class="pl-5 mb-3 list-disc font-comfortaa">
               <li class="bg-yellow-50 rounded-lg p-2 mb-2">
                 Mercado de competencia perfecta: Caracterizado por una gran
                 cantidad de compradores y vendedores, productos homogéneos y
@@ -50,27 +54,33 @@ import { Component } from '@angular/core';
             </ol>
 
             <div class="bg-green-100 rounded-lg p-4 mb-6">
-              <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1
+                class="text-3xl md:text-4xl font-voll font-bold text-gray-900 mb-2"
+              >
                 Marketing
               </h1>
-              El marketing es el proceso de planificar y ejecutar la concepción,
-              fijación de precios, promoción y distribución de ideas, bienes y
-              servicios para satisfacer los objetivos individuales y
-              organizacionales.<br /><br />
-              El marketing implica comprender las necesidades y deseos del
-              cliente y desarrollar productos y servicios que los satisfagan.
-              También incluye determinar el precio adecuado para esos productos
-              y servicios, identificar los mejores canales de distribución para
-              llegar a los clientes y promocionar y comunicar efectivamente los
-              beneficios de los productos y servicios.<br /><br />
-              En resumen, el marketing se trata de crear valor para los clientes
-              y construir relaciones sólidas con ellos, con el objetivo final de
-              generar ingresos y obtener beneficios para la empresa.<br /><br />
-              En el proceso de marketing, se consideran cuatro elementos
-              fundamentales:
+              <p class="font-comfortaa">
+                El marketing es el proceso de planificar y ejecutar la
+                concepción, fijación de precios, promoción y distribución de
+                ideas, bienes y servicios para satisfacer los objetivos
+                individuales y organizacionales.<br /><br />
+                El marketing implica comprender las necesidades y deseos del
+                cliente y desarrollar productos y servicios que los satisfagan.
+                También incluye determinar el precio adecuado para esos
+                productos y servicios, identificar los mejores canales de
+                distribución para llegar a los clientes y promocionar y
+                comunicar efectivamente los beneficios de los productos y
+                servicios.<br /><br />
+                En resumen, el marketing se trata de crear valor para los
+                clientes y construir relaciones sólidas con ellos, con el
+                objetivo final de generar ingresos y obtener beneficios para la
+                empresa.<br /><br />
+                En el proceso de marketing, se consideran cuatro elementos
+                fundamentales:
+              </p>
             </div>
 
-            <ul class="pl-5 mb-6 list-disc">
+            <ul class="pl-5 mb-6 list-disc font-comfortaa">
               <li class="bg-purple-50 rounded-lg p-2 mb-2">
                 Producto: Refiere a los bienes tangibles o intangibles que una
                 empresa ofrece a sus clientes. Esto incluye la calidad, el
@@ -98,21 +108,25 @@ import { Component } from '@angular/core';
             </ul>
 
             <div class="bg-yellow-100 rounded-lg p-4 mb-6">
-              <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1
+                class="text-3xl md:text-4xl font-voll font-bold text-gray-900 mb-2"
+              >
                 La franquicia
               </h1>
-              La franquicia es un acuerdo entre el franquiciante (dueño de una
-              empresa) y el franquiciado (persona interesada en operar un
-              negocio) que otorga al franquiciado el derecho de utilizar el
-              nombre comercial, los productos, los servicios y los métodos de
-              operación del franquiciante a cambio de regalías y otras
-              tarifas.<br /><br />
-              Las franquicias tienen ventajas y desventajas tanto para el
-              franquiciante como para el franquiciado. A continuación, se
-              presentan algunas de ellas:
+              <p class="font-comfortaa">
+                La franquicia es un acuerdo entre el franquiciante (dueño de una
+                empresa) y el franquiciado (persona interesada en operar un
+                negocio) que otorga al franquiciado el derecho de utilizar el
+                nombre comercial, los productos, los servicios y los métodos de
+                operación del franquiciante a cambio de regalías y otras
+                tarifas.<br /><br />
+                Las franquicias tienen ventajas y desventajas tanto para el
+                franquiciante como para el franquiciado. A continuación, se
+                presentan algunas de ellas:
+              </p>
             </div>
 
-            <ul class="pl-5 mb-6 list-disc">
+            <ul class="pl-5 mb-6 list-disc font-comfortaa">
               <li class="bg-blue-50 rounded-lg p-2 mb-2">
                 Ventajas:
                 <ul class="pl-5">
@@ -131,7 +145,7 @@ import { Component } from '@angular/core';
               </li>
             </ul>
 
-            <p class="bg-green-100 rounded-lg p-4 mb-6">
+            <p class="bg-green-100 rounded-lg p-4 mb-6 font-comfortaa">
               A pesar de las ventajas y desventajas, las franquicias son una
               forma popular de emprendimiento para aquellos que desean iniciar
               un negocio con el respaldo de una marca establecida y un sistema

@@ -14,7 +14,7 @@
           alt="Logo"
         />
         <span
-          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+          class="self-center text-xl font-semibold whitespace-nowrap dark:text-white font-slabo"
           >Aula Emprende</span
         >
       </a>
@@ -33,6 +33,7 @@
               class="block w-full px-3 py-2 rounded-md cursor-pointer hover:bg-dark-blue-900"
             >
               <a
+                class="font-slabo"
                 routerLink="/perfil"
                 routerLinkActive="active"
                 aria-current="page"
@@ -42,7 +43,7 @@
             <div
               class="block w-full px-3 py-2 rounded-md cursor-pointer hover:bg-dark-blue-900"
             >
-              <button (click)="logout()">Logout</button>
+              <button (click)="logout()" class="font-slabo">Logout</button>
             </div>
           </div>
         </div>
@@ -51,6 +52,7 @@
           routerLink="/login"
           routerLinkActive="active"
           aria-current="page"
+          class="font-slabo"
           class="text-white hover:bg-dark-blue-500 focus:ring-4 rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
           >Login</a
         >
@@ -101,7 +103,7 @@
         id="mobile-menu-2"
       >
         <ul
-          class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
+          class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0 font-slabo"
         >
           <li>
             <a

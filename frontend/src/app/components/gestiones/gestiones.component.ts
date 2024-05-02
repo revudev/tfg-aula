@@ -10,20 +10,25 @@ import { Component } from '@angular/core';
         <div class="w-full px-4 text-xl leading-normal text-gray-800 md:px-6">
           <div class="font-sans text-gray-800">
             <div class="bg-blue-100 rounded-lg p-4 mb-6">
-              <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1
+                class="text-3xl md:text-4xl font-bold font-voll text-gray-900 mb-2"
+              >
                 Qué son las gestiones empresariales
               </h1>
-              Las gestiones empresariales son el conjunto de actividades y
-              procesos que se llevan a cabo dentro de una empresa para
-              administrar eficientemente sus recursos y alcanzar sus objetivos.
-              Estas actividades pueden incluir la planificación, organización,
-              dirección y control de los recursos humanos, financieros,
-              materiales y tecnológicos de la empresa.<br /><br />
+              <p class="font-comfortaa">
+                Las gestiones empresariales son el conjunto de actividades y
+                procesos que se llevan a cabo dentro de una empresa para
+                administrar eficientemente sus recursos y alcanzar sus
+                objetivos. Estas actividades pueden incluir la planificación,
+                organización, dirección y control de los recursos humanos,
+                financieros, materiales y tecnológicos de la empresa.<br /><br />
+              </p>
+            </div>
+            <p class="font-comfortaa mb-5">
               Hay diferentes tipos de gestiones empresariales, entre las cuales
               se pueden mencionar:
-            </div>
-
-            <ol class="pl-5 mb-3 list-disc">
+            </p>
+            <ol class="pl-5 mb-3 list-disc font-comfortaa">
               <li class="bg-yellow-50 rounded-lg p-2 mb-2">
                 Gestión financiera: Se encarga de administrar los recursos
                 financieros de la empresa, incluyendo la inversión,
@@ -43,18 +48,22 @@ import { Component } from '@angular/core';
             </ol>
 
             <div class="bg-green-100 rounded-lg p-4 mb-6">
-              <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1
+                class="text-3xl md:text-4xl font-voll font-bold text-gray-900 mb-2"
+              >
                 Gestión administrativa
               </h1>
-              Consiste en el conjunto de actividades y procesos relacionados con
-              la administración y organización de una empresa. Esto incluye la
-              planificación, coordinación y control de las diferentes áreas y
-              recursos de la empresa para garantizar su correcto funcionamiento
-              y alcanzar sus objetivos.<br /><br />
-              En resumen, la gestión administrativa abarca desde la gestión del
-              personal y los recursos humanos hasta la gestión financiera,
-              pasando por la gestión de operaciones y la gestión de la
-              información.
+              <p class="font-comfortaa">
+                Consiste en el conjunto de actividades y procesos relacionados
+                con la administración y organización de una empresa. Esto
+                incluye la planificación, coordinación y control de las
+                diferentes áreas y recursos de la empresa para garantizar su
+                correcto funcionamiento y alcanzar sus objetivos.<br /><br />
+                En resumen, la gestión administrativa abarca desde la gestión
+                del personal y los recursos humanos hasta la gestión financiera,
+                pasando por la gestión de operaciones y la gestión de la
+                información.
+              </p>
             </div>
 
             <ul class="pl-5 mb-6 list-disc">
@@ -69,21 +78,25 @@ import { Component } from '@angular/core';
             </ul>
 
             <div class="bg-yellow-100 rounded-lg p-4 mb-6">
-              <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h1
+                class="text-3xl md:text-4xl font-voll font-bold text-gray-900 mb-2"
+              >
                 Gestión fiscal
               </h1>
-              Consiste en el conjunto de acciones y procedimientos que una
-              empresa realiza para cumplir con sus obligaciones tributarias ante
-              las autoridades fiscales. Esto incluye el cálculo, declaración y
-              pago de impuestos, así como el cumplimiento de otras obligaciones
-              fiscales establecidas por la ley.<br /><br />
-              La gestión fiscal es fundamental para garantizar el cumplimiento
-              de las obligaciones legales de la empresa y evitar posibles
-              sanciones por incumplimiento de las normativas fiscales.
+              <p class="font-comfortaa">
+                Consiste en el conjunto de acciones y procedimientos que una
+                empresa realiza para cumplir con sus obligaciones tributarias
+                ante las autoridades fiscales. Esto incluye el cálculo,
+                declaración y pago de impuestos, así como el cumplimiento de
+                otras obligaciones fiscales establecidas por la ley.<br /><br />
+                La gestión fiscal es fundamental para garantizar el cumplimiento
+                de las obligaciones legales de la empresa y evitar posibles
+                sanciones por incumplimiento de las normativas fiscales.
+              </p>
             </div>
 
             <ul class="pl-5 mb-6 list-disc">
-              <li class="bg-blue-50 rounded-lg p-2 mb-2">
+              <li class="bg-blue-50 rounded-lg p-2 mb-2 font-comfortaa">
                 Tipos de impuestos en la gestión fiscal:
                 <ul class="pl-5">
                   <li>
