@@ -1,23 +1,17 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from '../service/AuthGuard.service';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./home/home.component').then((c) => c.HomeComponent),
+    component: HomeComponent, // skip lazy loading by main video
   },
   {
     path: 'login',
     loadComponent: () =>
       import('./components/login/login.component').then(
         (c) => c.LoginComponent
-      ),
-  },
-  {
-    path: 'perfil',
-    loadComponent: () =>
-      import('./components/perfil/perfil.component').then(
-        (c) => c.PerfilComponent
       ),
   },
   {
@@ -49,16 +43,26 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'perfil',
+    loadComponent: () =>
+      import('./components/perfil/perfil.component').then(
+        (c) => c.PerfilComponent
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'events',
     loadComponent: () =>
       import('./components/events/events.component').then(
         (c) => c.EventsComponent
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'plan',
     loadComponent: () =>
       import('./components/plan/plan.component').then((c) => c.PlanComponent),
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
