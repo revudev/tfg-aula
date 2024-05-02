@@ -5,5 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-main{ margin-top: 85px; }
+main {
+  margin-top: 85px;
+}
