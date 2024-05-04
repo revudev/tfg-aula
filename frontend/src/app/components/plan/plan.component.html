@@ -1,8 +1,10 @@
-<main class="flex items-center justify-center h-screen">
-  <div>
-    <h1 class="text-center mb-9">
+<div class="flex items-center justify-center h-screen bg-blue-900">
+  <div class="bg-blue-400 rounded p-9">
+    <h1 class="text-center lg:text-2xl mb-9 sm:text-base">
       Hola {{ currentUser.name }} por favor elige para la seccion de:
-      {{ currentTheme }}
+      <p class="font-bold text-yellow-200">
+        {{ currentTheme }}
+      </p>
     </h1>
     <div class="dispoContainer">
       <h2 class="text-center">Disponible:</h2>
@@ -53,4 +55,4 @@
       </button>
     </div>
   </div>
-</main>
+</div>
