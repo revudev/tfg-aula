@@ -11,7 +11,7 @@ import {
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: 'contact.component.html',
-  styleUrls: ['contact.component.css'],
+  styles: ``,
 })
 export class ContactComponent {
   contactForm = new FormGroup({
