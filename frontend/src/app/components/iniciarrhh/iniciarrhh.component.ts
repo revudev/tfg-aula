@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: 'iniciarrhh.component.html',
-  styleUrls: ['iniciarrhh.component.css'],
+  styles: ``,
 })
 export class IniciarrhhComponent {}
