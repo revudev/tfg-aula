@@ -27,16 +27,17 @@ import {
   styleUrl: 'events.component.css',
 })
 export class EventsComponent implements OnInit {
+  constructor(private authService: AuthService) {}
+
   ngOnInit(): void {
     this.getEvent();
   }
 
   eventos: Evento[] = [];
   selected: Date | null = null;
-  showForm = false;
-
-  user = this.authService.getUserLS().user_type;
-  userAdmin = this.user == 'admin' || this.user == 'teacher';
+  user: string = this.authService.getUserLS().user_type;
+  userAdmin: boolean = this.user == 'admin' || this.user == 'teacher';
+  showForm: boolean = false;
 
   eventForm = new FormGroup({
     senderNameEv: new FormControl('', Validators.required),
@@ -101,5 +102,4 @@ export class EventsComponent implements OnInit {
   toggleForm() {
     this.showForm = !this.showForm;
   }
-  constructor(private authService: AuthService) {}
 }
