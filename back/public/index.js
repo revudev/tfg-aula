@@ -4,9 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+// Add Gzip
+const nodemailer = require("nodemailer");
+const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const app = (0, express_1.default)();
 const port = 4000;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express_1.default.json());
 require("dotenv").config();
 const connection = mysql.createConnection({
@@ -21,6 +26,36 @@ connection.connect((err) => {
         return;
     }
     console.log("Conectado correctamente con la bbdd");
+});
+app.post("/enviarCorreo", (req, res) => {
+    const { senderName, senderLastName, senderEmail, senderMessage } = req.body;
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASS,
+        },
+    });
+    const mailOptions = {
+        from: req.body.senderEmail,
+        to: process.env.GMAIL_USER,
+        subject: "Aula Emprende mensaje de contacto:",
+        html: `
+      <p>Nombre: ${senderName} ${senderLastName}</p>
+      <p>Email: ${senderEmail}</p>
+      <p>Mensaje: ${senderMessage}</p>
+    `,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            res.status(500).send("Error al enviar el correo");
+        }
+        else {
+            console.log("Correo enviado: " + info.response);
+            res.status(200).send("Correo enviado correctamente");
+        }
+    });
 });
 app.post("/login", (req, res) => {
     const { username, password } = req.body;

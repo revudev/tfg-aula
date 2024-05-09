@@ -1,9 +1,14 @@
 import express from "express";
-const mysql = require("mysql");
 
+// Add Gzip
+const nodemailer = require("nodemailer");
+const bodyParser = require("body-parser");
+const mysql = require("mysql");
 const app = express();
 const port = 4000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.json());
 
 require("dotenv").config();
@@ -21,6 +26,39 @@ connection.connect((err) => {
     return;
   }
   console.log("Conectado correctamente con la bbdd");
+});
+
+app.post("/enviarCorreo", (req, res) => {
+  const { senderName, senderLastName, senderEmail, senderMessage } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: req.body.senderEmail,
+    to: process.env.GMAIL_USER,
+    subject: "Aula Emprende mensaje de contacto:",
+    html: `
+      <p>Nombre: ${senderName} ${senderLastName}</p>
+      <p>Email: ${senderEmail}</p>
+      <p>Mensaje: ${senderMessage}</p>
+    `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send("Error al enviar el correo");
+    } else {
+      console.log("Correo enviado: " + info.response);
+      res.status(200).send("Correo enviado correctamente");
+    }
+  });
 });
 
 app.post("/login", (req, res) => {
@@ -81,4 +119,5 @@ app.get("/getEvent", (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
+
 module.exports = app;
