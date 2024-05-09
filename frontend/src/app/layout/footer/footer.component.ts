@@ -10,7 +10,7 @@ import { AppModule } from '../../app.module';
       <ul class="flex flex-wrap justify-center mb-2">
         <li class="list-none mr-3">
           <a
-            href="https://github.com/leid04"
+            href="https://github.com/revudev"
             class="text-white text-2xl transition duration-500 transform hover:-translate-y-1"
           >
             <svg
