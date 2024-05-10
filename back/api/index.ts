@@ -1,5 +1,13 @@
 import express from "express";
 
+// const cors = require("cors");
+//
+// const corsOptions = {
+//   origin: "http://localhost:4200",
+//   optionsSuccessStatus: 204,
+//   methods: "GET, POST, PUT, DELETE",
+// };
+
 // Add Gzip
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
@@ -10,6 +18,7 @@ const port = 4000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
+// app.use(cors(corsOptions)); // <- Only in local development
 
 require("dotenv").config();
 
@@ -33,6 +42,8 @@ app.post("/enviarCorreo", (req, res) => {
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
+    secure: true,
+    port: 465,
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_PASS,

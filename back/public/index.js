@@ -4,6 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+// const cors = require("cors");
+//
+// const corsOptions = {
+//   origin: "http://localhost:4200",
+//   optionsSuccessStatus: 204,
+//   methods: "GET, POST, PUT, DELETE",
+// };
 // Add Gzip
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
@@ -13,6 +20,7 @@ const port = 4000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express_1.default.json());
+// app.use(cors(corsOptions)); // <- Only in local development
 require("dotenv").config();
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -31,6 +39,8 @@ app.post("/enviarCorreo", (req, res) => {
     const { senderName, senderLastName, senderEmail, senderMessage } = req.body;
     const transporter = nodemailer.createTransport({
         service: "gmail",
+        secure: true,
+        port: 465,
         auth: {
             user: process.env.GMAIL_USER,
             pass: process.env.GMAIL_PASS,
