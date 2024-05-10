@@ -24,11 +24,11 @@
           </div>
         </div>
         <form
-          action="mailto:denys.msi04@gmal.com"
+          (ngSubmit)="onSubmit()"
           method="post"
+          autocomplete="off"
           [formGroup]="contactForm"
           class="p-10 bg-blue-400 md:w-2/3"
-          (ngSubmit)="$event.preventDefault()"
         >
           <div class="mb-6">
             <label
