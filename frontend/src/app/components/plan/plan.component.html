@@ -1,9 +1,9 @@
 <div class="flex items-center justify-center h-screen bg-blue-900">
   <div
-    class="relative overflow-y-auto bg-blue-400 rounded p-9 h-[700px] lg:h-auto"
+    class="relative overflow-y-auto bg-blue-400 rounded p-9 h-[500px] lg:h-auto"
   >
     <h1 class="text-center lg:text-2xl mb-9 sm:text-base">
-      Hola {{ currentUser.name }} por favor elige para la seccion de:
+      Hola {{ currentUser.name }} por favor elige para la sección de:
       <p class="font-bold text-yellow-200">
         {{ currentTheme }}
       </p>
@@ -42,19 +42,31 @@
         }
       </div>
     </div>
-    <div class="flex justify-between text-center">
+    <div class="flex justify-center text-center">
+      @if (currentThemeIndex !== 0) {
+      <div class="mr-11">
+        <button
+          class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
+          (click)="previousTheme()"
+        >
+          Anterior
+        </button>
+      </div>
+      } @if (isLastTheme()) {
       <button
         class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
-        (click)="previousTheme()"
+        (click)="finish()"
       >
-        Anterior
+        Finalizar
       </button>
+      }@else {
       <button
         class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
         (click)="nextTheme()"
       >
         Siguiente
       </button>
+      }
     </div>
   </div>
 </div>

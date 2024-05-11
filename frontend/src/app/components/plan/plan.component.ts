@@ -66,7 +66,13 @@ export class PlanComponent implements OnInit {
     this.saveSelection();
     this.updateAvailable();
   }
+  isLastTheme(): boolean {
+    return this.currentThemeIndex === this.themes.length - 1;
+  }
 
+  finish() {
+    alert('Has finalizado el proyec');
+  }
   changeTheme(index: number) {
     if (index >= 0 && index < this.themes.length) {
       this.currentThemeIndex = index;
