@@ -1,3 +1,5 @@
+<!-- lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 shadow-[0_5px_0_rgb(0,0,0)] hover:shadow-[0_2px_0px_rgb(0,0,0)] ease-out hover:translate-y-1 transition-all rounded -->
+
 <header
   class="fixed top-0 left-0 z-10 w-full p-2 border-b-2 border-gray-800 bg-dark-blue-600 bg-opacity-85"
 >
@@ -5,13 +7,13 @@
     <div class="flex flex-wrap items-center justify-between px-4 mx-auto">
       <a
         href="/"
-        class="flex items-center py-2 pr-4 pl-3 border-b border-gray-500 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 shadow-[0_5px_0_rgb(0,0,0)] hover:shadow-[0_2px_0px_rgb(0,0,0)] text-black bg-dark-blue-500 ease-out hover:translate-y-1 transition-all rounded"
+        class="flex items-center py-2 pl-3 pr-4 transition-all ease-out border-gray-500 rounded lg:p-0 hover:translate-y-1"
         aria-current="page"
       >
         <img
           src="../assets/logoAula.png"
           class="h-6 rounded-full lg:mr-3 sm:h-9 sm:p-0"
-          alt="Logo"
+          alt="Logo de aula emprende"
         />
         <span
           class="self-center hidden text-xl font-semibold whitespace-nowrap dark:text-white font -slabo md:inline-block"
@@ -27,13 +29,13 @@
             {{ currentUser.name }}
           </button>
           <div
-            class="absolute z-[99] top-[100%] left-[50%] translate-x-[-50%] rounded-md overflow-hidden shadow-lg min-w-[200px] w-max peer-focus:visible peer-focus:opacity-100 opacity-0 invisible duration-200 p-1 bg-dark-blue-700 border border-dimmed text-xs md:text-sm"
+            class="absolute z-[99] top-[100%] left-[50%] translate-x-[-50%] rounded-md overflow-hidden shadow-lg min-w-[50px] w-max peer-focus:visible peer-focus:opacity-100 opacity-0 invisible duration-200 p-1 bg-dark-blue-700 border border-dimmed text-xs md:text-sm"
           >
             <div
-              class="block w-full px-3 py-2 rounded-md cursor-pointer hover:bg-dark-blue-900"
+              class="flex px-3 py-2 rounded-md cursor-pointer hover:bg-dark-blue-900"
             >
               <a
-                class="font-slabo"
+                class="w-full font-slabo"
                 routerLink="/perfil"
                 routerLinkActive="active"
                 aria-current="page"
@@ -41,7 +43,7 @@
               >
             </div>
             <div
-              class="block w-full px-3 py-2 rounded-md cursor-pointer hover:bg-dark-blue-900"
+              class="px-3 py-2 rounded-md cursor-pointer hover:bg-dark-blue-900"
             >
               <button (click)="logout()" class="font-slabo">Logout</button>
             </div>
@@ -53,7 +55,7 @@
           routerLinkActive="active"
           aria-current="page"
           class="font-slabo"
-          class="text-white hover:bg-dark-blue-500 focus:ring-4 rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+          class="px-4 font-bold transition duration-300 border-b border-gray-800 rounded-full hover:bg-dark-blue-800 hover:border-transparent hover:text-primary-700 hover:scale-105"
           >Login</a
         >
         }
