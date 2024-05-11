@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
+import { AvailableData, User } from '../../../types';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -18,10 +19,16 @@ import {
 export class PlanComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
-  currentUser: any;
-  themes = ['Iniciativa emprendedora', 'Mercado y Marketing', 'Gestiones'];
-  currentThemeIndex = 0;
-  available: any = {
+  currentUser?: User;
+  currentThemeIndex: number = 0;
+  selections: AvailableData = {};
+
+  themes: string[] = [
+    'Iniciativa emprendedora',
+    'Mercado y Marketing',
+    'Gestiones',
+  ];
+  available: AvailableData = {
     'Iniciativa emprendedora': [
       'Creatividad',
       'Proactividad',
@@ -39,12 +46,11 @@ export class PlanComponent implements OnInit {
       'Gestión de operaciones',
     ],
   };
-  selection: string[] = [];
 
   ngOnInit() {
     this.currentUser = this.authService.getUserLS();
     this.loadCurrentTheme();
-    this.loadSelection();
+    this.loadSelections();
     this.updateAvailable();
   }
 
@@ -63,7 +69,7 @@ export class PlanComponent implements OnInit {
         event.currentIndex
       );
     }
-    this.saveSelection();
+    this.saveSelections();
     this.updateAvailable();
   }
   isLastTheme(): boolean {
@@ -71,13 +77,13 @@ export class PlanComponent implements OnInit {
   }
 
   finish() {
-    alert('Has finalizado el proyec');
+    alert('Guardar valores en bbdd y dirigir a perfil');
   }
   changeTheme(index: number) {
     if (index >= 0 && index < this.themes.length) {
       this.currentThemeIndex = index;
       this.saveCurrentTheme();
-      this.loadSelection();
+      this.loadSelections();
       this.updateAvailable();
     }
   }
@@ -108,21 +114,26 @@ export class PlanComponent implements OnInit {
     }
   }
 
-  private saveSelection() {
-    localStorage.setItem('selection', JSON.stringify(this.selection));
+  private saveSelections() {
+    localStorage.setItem('selections', JSON.stringify(this.selections));
   }
 
-  private loadSelection() {
-    const savedSelection = localStorage.getItem('selection');
-    if (savedSelection !== null) {
-      this.selection = JSON.parse(savedSelection);
+  private loadSelections() {
+    const savedSelections = localStorage.getItem('selections');
+    if (savedSelections !== null) {
+      this.selections = JSON.parse(savedSelections);
+    }
+    const currentTheme = this.themes[this.currentThemeIndex];
+    if (!this.selections[currentTheme]) {
+      this.selections[currentTheme] = [];
     }
   }
 
   private updateAvailable() {
     const currentTheme = this.themes[this.currentThemeIndex];
+    const selectedItems = this.selections[currentTheme] || [];
     this.available[currentTheme] = this.available[currentTheme].filter(
-      (item: string) => !this.selection.includes(item)
+      (item: string) => !selectedItems.includes(item)
     );
   }
 }

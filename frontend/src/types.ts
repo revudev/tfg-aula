@@ -12,6 +12,10 @@ export interface Evento {
   Description: string;
   id_user: number;
 }
+
+export interface AvailableData {
+  [key: string]: string[];
+}
 // export interface Options{
 //   headers?: HttpHeaders | {
 //       [header: string]: string | string[];

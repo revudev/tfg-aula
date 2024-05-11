@@ -3,7 +3,7 @@
     class="relative overflow-y-auto bg-blue-400 rounded p-9 h-[500px] lg:h-auto"
   >
     <h1 class="text-center lg:text-2xl mb-9 sm:text-base">
-      Hola {{ currentUser.name }} por favor elige para la sección de:
+      Hola {{ currentUser?.name }} por favor elige para la sección de:
       <p class="font-bold text-yellow-200">
         {{ currentTheme }}
       </p>
@@ -30,12 +30,13 @@
       <div
         cdkDropList
         #eleccionList="cdkDropList"
-        [cdkDropListData]="selection"
+        [cdkDropListData]="selections[currentTheme]"
         [cdkDropListConnectedTo]="[dispoList]"
         class="milist"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (item of selection; track selection) {
+        @for (item of selections[currentTheme]; track selections[currentTheme])
+        {
         <div class="mibox" cdkDrag>
           {{ item }}
         </div>
