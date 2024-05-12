@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
-import { Evento } from '../types';
+import { Evento, AvailableData } from '../types';
 
 const url = 'https://back-lemon.vercel.app';
+// const url = 'http://localhost:4000';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -18,6 +19,12 @@ export class AuthService {
   }
   getEvent(): Observable<any> {
     return this.apiService.get(`${url}/getEvent`);
+  }
+  addPlan(
+    user_id: number | null | undefined,
+    selections: AvailableData
+  ): Observable<any> {
+    return this.apiService.post(`${url}/savePlan`, { user_id, selections });
   }
   logout(): void {
     localStorage.removeItem('currentUser');

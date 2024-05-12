@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { AvailableData, User } from '../../../types';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -8,20 +9,24 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plan',
   standalone: true,
-  imports: [CdkDropList, CdkDrag],
+  imports: [CdkDropList, CdkDrag, MatProgressSpinnerModule],
   templateUrl: 'plan.component.html',
   styleUrl: 'plan.component.css',
 })
 export class PlanComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   currentUser?: User;
   currentThemeIndex: number = 0;
   selections: AvailableData = {};
+  messageResponsive: string = '';
+  processing: boolean = false;
+  showResponse: boolean = false;
 
   themes: string[] = [
     'Iniciativa emprendedora',
@@ -77,7 +82,29 @@ export class PlanComponent implements OnInit {
   }
 
   finish() {
-    alert('Guardar valores en bbdd y dirigir a perfil');
+    this.processing = true;
+    const userId = this.currentUser ? this.currentUser.id : null;
+    setTimeout(() => {
+      this.authService.addPlan(userId, this.selections).subscribe({
+        next: (response) => {
+          this.showResponse = true;
+          this.messageResponsive =
+            'Guardado en la base de datos correctamente.';
+          setTimeout(() => {
+            this.processing = false;
+            this.router.navigate(['/perfil']);
+          }, 2000);
+        },
+        error: (error) => {
+          this.showResponse = true;
+          this.messageResponsive = `Error al guardar el plan en BBDD ${error}`;
+          setTimeout(() => {
+            this.processing = false;
+            this.router.navigate(['/plan']);
+          }, 2000);
+        },
+      });
+    }, 2000);
   }
   changeTheme(index: number) {
     if (index >= 0 && index < this.themes.length) {
