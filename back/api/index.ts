@@ -1,7 +1,7 @@
 import express from "express";
 
 // const cors = require("cors");
-//
+
 // const corsOptions = {
 //   origin: "http://localhost:4200",
 //   optionsSuccessStatus: 204,
@@ -35,6 +35,67 @@ connection.connect((err) => {
     return;
   }
   console.log("Conectado correctamente con la bbdd");
+});
+
+app.post("/savePlan", (req, res) => {
+  const {
+    user_id,
+    selections: {
+      "Iniciativa emprendedora": iniciativa,
+      "Mercado y Marketing": mercadoMarketing,
+      Gestiones: gestiones,
+    },
+  } = req.body;
+
+  const checkSql = "SELECT * FROM BusinessPlans WHERE user_id = ?";
+  connection.query(checkSql, [user_id], (checkErr, checkResult) => {
+    if (checkErr) {
+      return res
+        .status(500)
+        .json({ message: "Error al verificar en la base de datos." });
+    }
+    if (checkResult.length > 0) {
+      const updateSql =
+        "UPDATE BusinessPlans SET iniciativa = ?, mercadoMarketing = ?, gestiones = ? WHERE user_id = ?";
+      const updateValues = [
+        iniciativa.join(", "),
+        mercadoMarketing.join(", "),
+        gestiones.join(", "),
+        user_id,
+      ];
+
+      connection.query(updateSql, updateValues, (updateErr, updateResult) => {
+        if (updateErr) {
+          return res
+            .status(500)
+            .json({ message: "Error al actualizar en la base de datos." });
+        }
+        res.status(200).json({
+          message: "Valores actualizados en la base de datos correctamente.",
+        });
+      });
+    } else {
+      const insertSql =
+        "INSERT INTO BusinessPlans (iniciativa, mercadoMarketing, gestiones, user_id) VALUES (?, ?, ?, ?)";
+      const insertValues = [
+        iniciativa.join(", "),
+        mercadoMarketing.join(", "),
+        gestiones.join(", "),
+        user_id,
+      ];
+
+      connection.query(insertSql, insertValues, (insertErr, insertResult) => {
+        if (insertErr) {
+          return res
+            .status(500)
+            .json({ message: "Error al guardar en la base de datos." });
+        }
+        res.status(200).json({
+          message: "Valores guardados en la base de datos correctamente.",
+        });
+      });
+    }
+  });
 });
 
 app.post("/enviarCorreo", (req, res) => {
