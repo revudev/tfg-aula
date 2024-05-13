@@ -5,6 +5,7 @@ export interface User {
   name: string;
   email: string;
   type: string;
+  user_id?: number;
 }
 export interface Evento {
   Date: Date;
@@ -12,10 +13,18 @@ export interface Evento {
   Description: string;
   id_user: number;
 }
-
 export interface AvailableData {
   [key: string]: string[];
 }
+
+export interface Plan {
+  id?: number;
+  iniciativa?: string | string[];
+  mercadoMarketing?: string | string[];
+  gestiones?: string | string[];
+  user_id?: number;
+}
+
 // export interface Options{
 //   headers?: HttpHeaders | {
 //       [header: string]: string | string[];

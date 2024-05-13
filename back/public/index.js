@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-// const cors = require("cors");
-// const corsOptions = {
-//   origin: "http://localhost:4200",
-//   optionsSuccessStatus: 204,
-//   methods: "GET, POST, PUT, DELETE",
-// };
+const cors = require("cors");
+const corsOptions = {
+    origin: "http://localhost:4200",
+    optionsSuccessStatus: 204,
+    methods: "GET, POST, PUT, DELETE",
+};
 // Add Gzip
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
@@ -19,7 +19,7 @@ const port = 4000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express_1.default.json());
-// app.use(cors(corsOptions)); // <- Only in local development
+app.use(cors(corsOptions)); // <- Only in local development
 require("dotenv").config();
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -33,6 +33,27 @@ connection.connect((err) => {
         return;
     }
     console.log("Conectado correctamente con la bbdd");
+});
+app.post("/getPlan", (req, res) => {
+    const user_id = req.body.user_id;
+    const getPlanSql = "SELECT * FROM BusinessPlans WHERE user_id = ?";
+    connection.query(getPlanSql, [user_id], (err, result) => {
+        if (err) {
+            return res
+                .status(500)
+                .json({ message: "Error al obtener el plan del usuario." });
+        }
+        if (result.length === 0) {
+            return res.status(404).json({ message: "El usuario no tiene un plan." });
+        }
+        const plan = {
+            iniciativa: result[0].iniciativa.split(", "),
+            mercadoMarketing: result[0].mercadoMarketing.split(", "),
+            gestiones: result[0].gestiones.split(", "),
+            user_id: result[0].user_id,
+        };
+        res.status(200).json(plan);
+    });
 });
 app.post("/savePlan", (req, res) => {
     const { user_id, selections: { "Iniciativa emprendedora": iniciativa, "Mercado y Marketing": mercadoMarketing, Gestiones: gestiones, }, } = req.body;
