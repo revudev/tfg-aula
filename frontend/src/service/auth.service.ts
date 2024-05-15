@@ -35,8 +35,8 @@ export class AuthService {
       }, 500);
     });
   }
-  getPlan(user_id: number | undefined): Observable<any> {
-    return this.apiService.post(`${url}/getPlan`, { user_id });
+  getPlan(id: number | undefined): Observable<any> {
+    return this.apiService.post(`${url}/getPlan`, { id });
   }
 
   setUserLS(user: any): void {

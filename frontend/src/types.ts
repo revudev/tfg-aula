@@ -16,6 +16,10 @@ export interface Evento {
 export interface AvailableData {
   [key: string]: string[];
 }
+export interface messageResponsive {
+  message: string;
+  resultado: boolean;
+}
 
 export interface Plan {
   id?: number;

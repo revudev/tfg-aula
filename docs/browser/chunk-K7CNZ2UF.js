@@ -1,1 +1,0 @@
-import{Eb as a,Lb as p,ka as i,mb as o,nb as r}from"./chunk-7P7IC7KT.js";var m=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=i({type:e,selectors:[["app-perfil"]],standalone:!0,features:[p],decls:3,vars:0,template:function(n,f){n&1&&(o(0,"main")(1,"p"),a(2,"perfil works!"),r()())}});let t=e;return t})();export{m as PerfilComponent};
