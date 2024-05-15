@@ -4,23 +4,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const cors = require("cors");
-const corsOptions = {
-    origin: "http://localhost:4200",
-    optionsSuccessStatus: 204,
-    methods: "GET, POST, PUT, DELETE",
-};
-// Add Gzip
+// Gzip
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const app = (0, express_1.default)();
 const port = 4000;
+require("dotenv").config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express_1.default.json());
-app.use(cors(corsOptions)); // <- Only in local development
-require("dotenv").config();
+// Only in local development
+// const cors = require("cors");
+// const corsOptions = {
+//   origin: "http://localhost:4200",
+//   optionsSuccessStatus: 204,
+//   methods: "GET, POST, PUT, DELETE",
+// };
+// app.use(cors(corsOptions));
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -35,9 +36,9 @@ connection.connect((err) => {
     console.log("Conectado correctamente con la bbdd");
 });
 app.post("/getPlan", (req, res) => {
-    const user_id = req.body.user_id;
+    const id = req.body.id;
     const getPlanSql = "SELECT * FROM BusinessPlans WHERE user_id = ?";
-    connection.query(getPlanSql, [user_id], (err, result) => {
+    connection.query(getPlanSql, [id], (err, result) => {
         if (err) {
             return res
                 .status(500)
@@ -50,7 +51,7 @@ app.post("/getPlan", (req, res) => {
             iniciativa: result[0].iniciativa.split(", "),
             mercadoMarketing: result[0].mercadoMarketing.split(", "),
             gestiones: result[0].gestiones.split(", "),
-            user_id: result[0].user_id,
+            id: result[0].id,
         };
         res.status(200).json(plan);
     });
@@ -186,7 +187,7 @@ app.get("/getEvent", (req, res) => {
     });
 });
 app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
+    console.log(`Server listening at localhost:${port}`);
 });
 module.exports = app;
 //# sourceMappingURL=index.js.map
