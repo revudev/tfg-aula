@@ -21,6 +21,9 @@ export class PerfilComponent {
     this.currentUser = this.authService.getUserLS();
     if (this.currentUser) this.getPlan();
   }
+  setCurrentIndex(index: number) {
+    this.authService.setCurrentTILS(index);
+  }
   getPlan() {
     this.authService.getPlan(this.currentUser?.id).subscribe({
       next: (response) => {
