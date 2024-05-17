@@ -1,6 +1,6 @@
-# 🚀 Aula De Emprendimiento - Backend
+# :mechanical_arm:  Aula De Emprendimiento - Backend
 
-Node.js, Express, PHP and MySQL.
+Express.js | Dotenv | Nodemailder and MySQL.
 
 > [!TIP]
 >
@@ -14,5 +14,8 @@ Node.js, Express, PHP and MySQL.
 
 2. **Serve the application:**
    ```bash
-   node server.js
+   npm run dev # build and run
+   ```
+   ```bash
+   node public/index.js # for run
    ```
