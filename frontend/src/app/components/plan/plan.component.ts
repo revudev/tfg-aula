@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
-import { AvailableData, User } from '../../../types';
+import { AvailableData, User, messageResponsive } from '../../../types';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
   CdkDragDrop,
@@ -24,7 +24,7 @@ export class PlanComponent implements OnInit {
   currentUser?: User;
   currentThemeIndex: number = 0;
   selections: AvailableData = {};
-  messageResponsive: string = '';
+  messageResponsive?: messageResponsive;
   processing: boolean = false;
   showResponse: boolean = false;
 
@@ -88,8 +88,10 @@ export class PlanComponent implements OnInit {
       this.authService.addPlan(userId, this.selections).subscribe({
         next: (response) => {
           this.showResponse = true;
-          this.messageResponsive =
-            'Guardado en la base de datos correctamente.';
+          this.messageResponsive = {
+            message: `Guardado en la base de datos correctamente !`,
+            resultado: true,
+          };
           setTimeout(() => {
             this.processing = false;
             this.router.navigate(['/perfil']);
@@ -97,7 +99,10 @@ export class PlanComponent implements OnInit {
         },
         error: (error) => {
           this.showResponse = true;
-          this.messageResponsive = `Error al guardar el plan en BBDD ${error}`;
+          this.messageResponsive = {
+            message: `Error al guardar el plan en BBDD`,
+            resultado: false,
+          };
           setTimeout(() => {
             this.processing = false;
             this.router.navigate(['/plan']);
