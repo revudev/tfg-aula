@@ -1,6 +1,6 @@
 # 👁️ Aula De Emprendimiento - Frontend
 
-Angular 17, Tailwind CSS, Material Angular and PrimeNg
+Angular 17 | Tailwind CSS | Material Angular and PrimeNg
 
 > [!TIP]
 >### Initial Project Setup:
