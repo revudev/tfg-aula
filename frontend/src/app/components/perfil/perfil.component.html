@@ -123,9 +123,21 @@
     </div>
     <div class="max-w-screen-lg px-5 mx-auto">
       <div class="mb-8 text-lg bg-blue-300">
-        <h1 class="font-bold text-center font-voll">Mensajes</h1>
+        <h1 class="font-bold text-center font-voll">
+          {{ this.messageComments?.message }}
+        </h1>
       </div>
-      <h1 class="font-bold text-white font-voll">No tienes ningún mensaje</h1>
+      <ul class="font-bold text-white font-voll">
+        @for (item of comments; track $index) {
+        <li class="mb-4">
+          <div class="p-4 bg-gray-800 rounded">
+            <p class="text-gray-300">{{ item.content }}</p>
+            <p class="text-sm text-gray-500">{{ item.publication_date }}</p>
+            <p class="text-sm text-gray-500">{{ item.user_name }}</p>
+          </div>
+        </li>
+        }
+      </ul>
     </div>
   </div>
 </div>

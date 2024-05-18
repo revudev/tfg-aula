@@ -16,13 +16,37 @@ export class PerfilComponent {
   currentUser?: User;
   currentPlan?: Plan;
   messageResponsive?: messageResponsive;
+  messageComments?: messageResponsive;
+  comments?: any[];
 
   ngOnInit() {
     this.currentUser = this.authService.getUserLS();
-    if (this.currentUser) this.getPlan();
+    if (this.currentUser) {
+      this.getPlan();
+      this.getComments();
+    }
   }
   setCurrentIndex(index: number) {
     this.authService.setCurrentTILS(index);
+  }
+  getComments() {
+    this.authService.getComments(this.currentUser?.id).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.comments = response;
+        this.messageComments = {
+          message: `Tienes ${this.comments?.length} mensajes nuevos: `,
+          resultado: true,
+        };
+      },
+      error: (error) => {
+        console.log(error);
+        this.messageComments = {
+          message: 'No tienes mensajes',
+          resultado: true,
+        };
+      },
+    });
   }
   getPlan() {
     this.authService.getPlan(this.currentUser?.id).subscribe({
