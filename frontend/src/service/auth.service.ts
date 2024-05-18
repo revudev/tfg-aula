@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
-import { Evento, AvailableData } from '../types';
+import { Evento, AvailableData, User } from '../types';
 
 const url = 'https://back-lemon.vercel.app';
 // const url = 'http://localhost:4000';
@@ -44,6 +44,14 @@ export class AuthService {
   }
   setUserLS(user: any): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+  isAdmin(): boolean {
+    const userJson = localStorage.getItem('currentUser');
+    if (userJson) {
+      const user = JSON.parse(userJson);
+      return user.user_type === 'admin' || user.user_type === 'teacher';
+    }
+    return false;
   }
   getUserLS(): any {
     const user = localStorage.getItem('currentUser');
