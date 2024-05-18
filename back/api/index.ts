@@ -63,6 +63,33 @@ app.post("/getPlan", (req, res) => {
   });
 });
 
+app.get("/getAllPlan", (req, res) => {
+  const getPlanSql = `
+    SELECT bp.id, bp.iniciativa, bp.mercadoMarketing, bp.gestiones, us.name 
+    FROM BusinessPlans AS bp 
+    JOIN Users AS us ON bp.user_id = us.id;
+  `;
+
+  connection.query(getPlanSql, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Error al obtener los planes." });
+    }
+    if (result.length === 0) {
+      return res.status(404).json({ message: "No hay planes." });
+    }
+
+    const planes = result.map((row) => ({
+      idPlan: row.id,
+      iniciativa: row.iniciativa.split(", "),
+      mercadoMarketing: row.mercadoMarketing.split(", "),
+      gestiones: row.gestiones.split(", "),
+      name: row.name,
+    }));
+
+    res.status(200).json(planes);
+  });
+});
+
 app.post("/savePlan", (req, res) => {
   const {
     user_id,
