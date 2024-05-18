@@ -141,6 +141,26 @@ app.post("/sendComment", (req, res) => {
     }
   });
 });
+
+app.post("/getComments", (req, res) => {
+  const { id } = req.body;
+  const showCommentSql = `
+    SELECT co.content, co.publication_date, us.name AS user_name
+    FROM Comments co
+    JOIN BusinessPlans bs ON co.plan_id = bs.id
+    JOIN Users us ON co.user_publish = us.id
+    WHERE bs.user_id = ?;
+  `;
+  connection.query(showCommentSql, [id], (err, results) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ message: "Error al obtener los comentarios." });
+    }
+    res.status(200).json(results);
+  });
+});
+
 app.post("/savePlan", (req, res) => {
   const {
     user_id,
