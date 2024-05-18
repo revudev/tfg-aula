@@ -1,1 +1,64 @@
-<p>projects works!</p>
+<div class="bg-blue-900">
+  <div class="pt-20 pb-32">
+    <div class="max-w-screen-lg p-3 px-5 mx-auto bg-blue-600 rounded">
+      <h1 class="mb-8 text-4xl font-bold text-white font-voll">
+        Hola {{ this.currentUser?.name }} !
+      </h1>
+      <div class="max-w-screen-lg px-5 mx-auto">
+        <div class="p-4 mb-8 text-lg font-bold bg-blue-300 font-comfortaa">
+          {{ messageResponsive?.message }}
+        </div>
+
+        @if (messageResponsive?.resultado) { @for (plan of allPlan; track
+        allPlan) {
+        <div class="mb-6">
+          <h1 class="mb-4 text-2xl font-semibold text-yellow-400">
+            {{ plan.name }}
+          </h1>
+
+          <div class="p-3 mb-4 rounded bg-slate-600">
+            <strong class="block mb-2 text-white">Iniciativas:</strong>
+            <ul class="pl-5 list-disc list-inside">
+              @for (item of plan.iniciativa; track $index) {
+              <li>{{ item }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="p-3 mb-4 bg-yellow-800 rounded">
+            <strong class="block mb-2 text-white">Mercado de Marketing:</strong>
+            <ul class="pl-5 list-disc list-inside">
+              @for ( item of plan.mercadoMarketing; track $index) {
+              <li class="mb-1">{{ item }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="p-3 mb-4 bg-orange-600 rounded">
+            <strong class="block mb-2 text-white">Gestiones:</strong>
+            <ul class="pl-5 list-disc list-inside">
+              @for ( item of plan.gestiones; track $index) {
+              <li class="mb-1">{{ item }}</li>
+              }
+            </ul>
+          </div>
+          <div class="flex items-center justify-center">
+            <input
+              type="text"
+              placeholder="Comentario..."
+              class="p-2"
+              #commentInput
+            />
+            <button
+              class="px-4 py-2 font-bold text-white rounded bg-dark-blue-900 hover:bg-dark-blue-600 font-comfortaa"
+              (click)="sendComment(plan.idPlan, commentInput.value)"
+            >
+              Enviar comentario
+            </button>
+          </div>
+        </div>
+        } }
+      </div>
+    </div>
+  </div>
+</div>
