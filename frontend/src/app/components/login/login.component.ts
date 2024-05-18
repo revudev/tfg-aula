@@ -17,7 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
   ],
   templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css'],
+  styles: '',
 })
 export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
@@ -44,7 +44,6 @@ export class LoginComponent {
         }
         // console.log('Respuesta del backend:', response);
       },
-      // Error in login
       error: (error) => {
         this.errorMessage = `Credenciales inválidas. Por favor, inténtalo de nuevo.`;
       },
