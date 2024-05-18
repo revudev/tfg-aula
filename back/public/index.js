@@ -79,6 +79,21 @@ app.get("/getAllPlan", (req, res) => {
         res.status(200).json(planes);
     });
 });
+app.post("/sendComment", (req, res) => {
+    const { planId, text, user_publish } = req.body;
+    const insertCommentSql = `
+    INSERT INTO Comments (plan_id, content, user_publish)
+    VALUES (?,?, ?);
+  `;
+    connection.query(insertCommentSql, [planId, text, user_publish], (err, result) => {
+        if (err) {
+            return res
+                .status(500)
+                .json({ message: "Error al insertar el comentario." });
+        }
+        res.status(200).json({ message: "Comentario insertado correctamente." });
+    });
+});
 app.post("/savePlan", (req, res) => {
     const { user_id, selections: { "Iniciativa emprendedora": iniciativa, "Mercado y Marketing": mercadoMarketing, Gestiones: gestiones, }, } = req.body;
     const checkSql = "SELECT * FROM BusinessPlans WHERE user_id = ?";
