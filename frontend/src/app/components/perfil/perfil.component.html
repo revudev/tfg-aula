@@ -1,9 +1,11 @@
 <div class="bg-blue-900">
   <div class="pt-20 pb-32">
     <div class="max-w-screen-lg px-5 mx-auto text-center">
-      <h1 class="mb-8 text-4xl font-bold">Hola {{ this.currentUser?.name }}</h1>
+      <h1 class="mb-8 text-4xl font-bold text-white font-voll">
+        Hola {{ this.currentUser?.name }} !
+      </h1>
 
-      <div class="mb-8 text-lg font-bold bg-blue-300">
+      <div class="mb-8 text-lg font-bold bg-blue-300 font-comfortaa">
         {{ messageResponsive?.message }}
       </div>
       @if (messageResponsive?.resultado) {
@@ -12,15 +14,15 @@
           class="p-8 mb-4 bg-yellow-300 rounded-lg shadow-lg md:mb-0 md:mr-4"
         >
           @if (currentPlan?.iniciativa != '') {
-          <h1 class="mb-5">
+          <h1 class="mb-5 font-voll">
             En
             <span class="bg-blue-200">Iniciativa emprendedora</span>
             principalmente destacas:
           </h1>
-          <p>{{ currentPlan?.iniciativa }}</p>
+          <p class="font-comfortaa">{{ currentPlan?.iniciativa }}</p>
           }@else {
           <div class="flex flex-col items-center justify-items-center">
-            <h1 class="mb-2 text-sm font-bold">
+            <h1 class="mb-2 text-sm font-bold font-voll">
               Te falta por hacer la parte de Iniciativa emprendedora
             </h1>
             <button
@@ -28,7 +30,7 @@
               (click)="setCurrentIndex(0)"
               routerLinkActive="active"
               aria-current="page"
-              class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-blue-300 rounded hover:bg-blue-400"
+              class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-blue-300 rounded font-comfortaa hover:bg-blue-400"
             >
               Vamos a crearla!
             </button>
@@ -37,15 +39,15 @@
         </div>
         <div class="p-8 bg-blue-300 rounded-lg shadow-lg md:ml-4">
           @if (currentPlan?.iniciativa != '') {
-          <h1 class="mb-5">
+          <h1 class="mb-5 font-voll">
             En
             <span class="bg-blue-200">Mercado y Marketing</span>
             destaca:
           </h1>
-          <p>{{ currentPlan?.mercadoMarketing }}</p>
+          <p class="font-comfortaa">{{ currentPlan?.mercadoMarketing }}</p>
           }@else {
           <div class="flex flex-col items-center justify-items-center">
-            <h1 class="mb-2 text-sm font-bold">
+            <h1 class="mb-2 text-sm font-bold font-voll">
               Te falta por hacer la parte de Mercado y marketing
             </h1>
             <button
@@ -53,7 +55,7 @@
               (click)="setCurrentIndex(1)"
               routerLinkActive="active"
               aria-current="page"
-              class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-yellow-300 rounded hover:bg-blue-400"
+              class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-yellow-300 rounded hover:bg-blue-400 font-comfortaa"
             >
               Vamos a crearla!
             </button>
@@ -65,15 +67,15 @@
       <div class="flex justify-center mb-8">
         <div class="p-8 bg-red-300 rounded-lg shadow-lg">
           @if (currentPlan?.gestiones != '') {
-          <h1 class="mb-5">
+          <h1 class="mb-5 font-voll">
             Finalmente en
             <span class="bg-blue-200">gestiones</span>
             se recoge:
           </h1>
-          <p>{{ currentPlan?.gestiones }}</p>
+          <p class="font-comfortaa">{{ currentPlan?.gestiones }}</p>
           }@else {
           <div class="flex flex-col items-center justify-items-center">
-            <h1 class="mb-2 text-sm font-bold">
+            <h1 class="mb-2 text-sm font-bold font-voll">
               Se te ha olvidado lo último que es la parte de gestiones
             </h1>
             <button
@@ -81,7 +83,7 @@
               routerLinkActive="active"
               (click)="setCurrentIndex(2)"
               aria-current="page"
-              class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-green-300 rounded hover:bg-blue-400"
+              class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-green-300 rounded hover:bg-blue-400 font-comfortaa"
             >
               Vamos a crearla!
             </button>
@@ -92,7 +94,7 @@
 
       <div class="flex justify-center mb-3">
         <button
-          class="p-2 mr-3 transition-colors duration-300 ease-in-out bg-blue-300 rounded hover:bg-blue-400"
+          class="p-2 mr-3 transition-colors duration-300 ease-in-out bg-blue-300 rounded hover:bg-blue-400 font-voll"
         >
           Descargar
         </button>
@@ -100,20 +102,20 @@
           routerLink="/plan"
           routerLinkActive="active"
           aria-current="page"
-          class="p-2 transition-colors duration-300 ease-in-out bg-blue-300 rounded hover:bg-blue-400"
+          class="p-2 transition-colors duration-300 ease-in-out bg-blue-300 rounded hover:bg-blue-400 font-comfortaa"
         >
           Modificar
         </button>
       </div>
       }@else{
-      <h1 class="mb-2 text-xl font-bold text-yellow-400">
+      <h1 class="mb-2 text-xl font-bold text-yellow-400 font-voll">
         Crea tu plan con nosotros!
       </h1>
       <button
         routerLink="/plan"
         routerLinkActive="active"
         aria-current="page"
-        class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-blue-300 rounded hover:bg-blue-400"
+        class="p-2 mb-3 transition-colors duration-300 ease-in-out bg-blue-300 rounded hover:bg-blue-400 font-comfortaa"
       >
         Vamos allá!
       </button>
@@ -121,9 +123,9 @@
     </div>
     <div class="max-w-screen-lg px-5 mx-auto">
       <div class="mb-8 text-lg bg-blue-300">
-        <h1 class="font-bold text-center">Mensajes</h1>
+        <h1 class="font-bold text-center font-voll">Mensajes</h1>
       </div>
-      <h1 class="font-bold text-white">No tienes ningún mensaje</h1>
+      <h1 class="font-bold text-white font-voll">No tienes ningún mensaje</h1>
     </div>
   </div>
 </div>

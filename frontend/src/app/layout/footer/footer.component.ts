@@ -60,7 +60,7 @@ import { AppModule } from '../../app.module';
           </a>
         </li>
       </ul>
-      <ul class="flex flex-wrap justify-center">
+      <ul class="flex flex-wrap justify-center font-voll">
         <li class="list-none">
           <a
             routerLink="/"

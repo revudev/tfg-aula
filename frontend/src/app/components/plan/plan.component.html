@@ -3,20 +3,20 @@
   <div
     class="relative overflow-y-auto bg-blue-400 rounded p-9 h-[500px] lg:h-auto"
   >
-    <h1 class="text-center lg:text-2xl mb-9 sm:text-base">
+    <h1 class="text-center lg:text-2xl mb-9 sm:text-base font-voll">
       Hola {{ currentUser?.name }} por favor elige para la sección de:
-      <p class="font-bold text-yellow-200">
+      <p class="font-bold text-yellow-200 font-comfortaa">
         {{ currentTheme }}
       </p>
     </h1>
     <div class="dispoContainer">
-      <h2 class="text-center">Disponible:</h2>
+      <h2 class="text-center font-comfortaa">Disponible:</h2>
       <div
         cdkDropList
         #dispoList="cdkDropList"
         [cdkDropListData]="available[currentTheme]"
         [cdkDropListConnectedTo]="[eleccionList]"
-        class="milist"
+        class="milist font-comfortaa"
         (cdkDropListDropped)="drop($event)"
       >
         @for (item of available[currentTheme]; track available[currentTheme]) {
@@ -27,13 +27,13 @@
       </div>
     </div>
     <div class="dispoContainer">
-      <h2 class="text-center">Tu elección:</h2>
+      <h2 class="text-center font-comfortaa">Tu elección:</h2>
       <div
         cdkDropList
         #eleccionList="cdkDropList"
         [cdkDropListData]="selections[currentTheme]"
         [cdkDropListConnectedTo]="[dispoList]"
-        class="milist"
+        class="milist font-comfortaa"
         (cdkDropListDropped)="drop($event)"
       >
         @for (item of selections[currentTheme]; track selections[currentTheme])
@@ -48,7 +48,7 @@
       @if (currentThemeIndex !== 0) {
       <div class="mr-11">
         <button
-          class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
+          class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600 font-comfortaa"
           (click)="previousTheme()"
         >
           Anterior
@@ -56,14 +56,14 @@
       </div>
       } @if (isLastTheme()) {
       <button
-        class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
+        class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600 font-comfortaa"
         (click)="finish()"
       >
         Finalizar
       </button>
       }@else {
       <button
-        class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600"
+        class="px-4 py-2 font-bold text-white rounded bg-dark-blue-500 hover:bg-dark-blue-600 font-comfortaa"
         (click)="nextTheme()"
       >
         Siguiente
@@ -74,13 +74,13 @@
   } @else { @if (!showResponse) {
   <div class="flex flex-col items-center">
     <mat-spinner></mat-spinner>
-    <h1 class="p-2 text-xl font-bold text-white lg:text-3xl">
+    <h1 class="p-2 text-xl font-bold text-white lg:text-3xl font-voll">
       Procesando tu plan...
     </h1>
   </div>
   }@else {
   <div class="flex flex-col items-center">
-    <h1 class="p-2 text-xl font-bold text-white lg:text-3xl">
+    <h1 class="p-2 text-xl font-bold text-white lg:text-3xl font-voll">
       {{ messageResponsive?.message }}
     </h1>
     <video muted autoplay width="600" height="600">
