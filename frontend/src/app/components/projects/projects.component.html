@@ -55,6 +55,34 @@
             >
               Enviar comentario
             </button>
+            @if (this.seeMessage) { @if (this.messageComment?.resultado) {
+            <video muted loop autoplay width="50" height="50" class="ml-3">
+              <source src="../../../assets/planSuce.mp4" type="video/mp4" />
+              Tu navegador web no soporta el vídeo.
+            </video>
+            <div
+              class="p-2 text-lg font-bold text-black bg-green-700 font-comfortaa"
+            >
+              <h1>
+                {{ this.messageComment?.message || "Comentario enviado !" }}
+              </h1>
+            </div>
+            }@else{
+            <video muted loop autoplay width="50" height="50" class="ml-3">
+              <source src="../../../assets/planUnsuce.mp4" type="video/mp4" />
+              Tu navegador web no soporta el vídeo.
+            </video>
+            <div
+              class="p-2 text-lg font-bold text-black bg-red-700 font-comfortaa"
+            >
+              <h1>
+                {{
+                  this.messageComment?.message ||
+                    "Error al enviar el comentario ..."
+                }}
+              </h1>
+            </div>
+            } }
           </div>
         </div>
         } }

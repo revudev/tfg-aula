@@ -15,6 +15,8 @@ export class ProjectsComponent {
   currentUser?: User;
   allPlan?: any[];
   messageResponsive?: messageResponsive;
+  messageComment?: messageResponsive;
+  seeMessage: boolean = false;
 
   ngOnInit() {
     this.currentUser = this.authService.getUserLS();
@@ -25,9 +27,25 @@ export class ProjectsComponent {
     this.authService.sendComment(planId, text, this.currentUser?.id).subscribe({
       next: (response) => {
         console.log(response);
+        this.messageComment = {
+          message: 'Comentario enviado',
+          resultado: true,
+        };
+        this.seeMessage = true;
+        setTimeout(() => {
+          this.seeMessage = false;
+        }, 3000);
       },
       error: (error) => {
         console.log(error);
+        this.messageComment = {
+          message: 'Error al enviar el comentario',
+          resultado: false,
+        };
+        this.seeMessage = true;
+        setTimeout(() => {
+          this.seeMessage = false;
+        }, 3000);
       },
     });
   }
