@@ -22,14 +22,14 @@ export class ProjectsComponent {
   }
   sendComment(planId: number, text: string) {
     console.log(planId, text);
-    // this.authService.sendComment().subscribe({
-    //   next: (response) => {
-    //     console.log(response);
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //   },
-    // });
+    this.authService.sendComment(planId, text, this.currentUser?.id).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
   getAllPlan() {
     this.authService.getAllPlan().subscribe({

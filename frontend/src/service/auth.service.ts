@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { Evento, AvailableData, User } from '../types';
 
-// const url = 'https://back-lemon.vercel.app';
-const url = 'http://localhost:4000';
+const url = 'https://back-lemon.vercel.app';
+// const url = 'http://localhost:4000';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -38,6 +38,13 @@ export class AuthService {
   }
   setCurrentTILS(index: number) {
     localStorage.setItem('currentThemeIndex', index.toString());
+  }
+  sendComment(planId: number, text: string, user_publish: number | undefined) {
+    return this.apiService.post(`${url}/sendComment`, {
+      planId,
+      text,
+      user_publish,
+    });
   }
   getPlan(id: number | undefined): Observable<any> {
     return this.apiService.post(`${url}/getPlan`, { id });
