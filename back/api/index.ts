@@ -92,24 +92,55 @@ app.get("/getAllPlan", (req, res) => {
 
 app.post("/sendComment", (req, res) => {
   const { planId, text, user_publish } = req.body;
-  const insertCommentSql = `
-    INSERT INTO Comments (plan_id, content, user_publish)
-    VALUES (?,?, ?);
+  const checkCommentSql = `
+    SELECT * FROM Comments WHERE plan_id = ? AND user_publish = ?;
   `;
-  connection.query(
-    insertCommentSql,
-    [planId, text, user_publish],
-    (err, result) => {
-      if (err) {
-        return res
-          .status(500)
-          .json({ message: "Error al insertar el comentario." });
-      }
-      res.status(200).json({ message: "Comentario insertado correctamente." });
+  connection.query(checkCommentSql, [planId, user_publish], (err, results) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ message: "Error al comprobar el comentario." });
     }
-  );
+    if (results.length > 0) {
+      const updateCommentSql = `
+        UPDATE Comments SET content = ? WHERE plan_id = ? AND user_publish = ?;
+      `;
+      connection.query(
+        updateCommentSql,
+        [text, planId, user_publish],
+        (err, result) => {
+          if (err) {
+            return res
+              .status(500)
+              .json({ message: "Error al actualizar el comentario." });
+          }
+          res
+            .status(200)
+            .json({ message: "Comentario actualizado correctamente." });
+        }
+      );
+    } else {
+      const insertCommentSql = `
+        INSERT INTO Comments (plan_id, content, user_publish)
+        VALUES (?, ?, ?);
+      `;
+      connection.query(
+        insertCommentSql,
+        [planId, text, user_publish],
+        (err, result) => {
+          if (err) {
+            return res
+              .status(500)
+              .json({ message: "Error al insertar el comentario." });
+          }
+          res
+            .status(200)
+            .json({ message: "Comentario insertado correctamente." });
+        }
+      );
+    }
+  });
 });
-
 app.post("/savePlan", (req, res) => {
   const {
     user_id,
