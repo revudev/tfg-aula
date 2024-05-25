@@ -1,37 +1,61 @@
 # 🚀 Aula De Emprendimiento - TFG Denys Revutskyi
 
-### Introducción y Objetivos
+> [!TIP]
+> ### Introducción
 
 📚 **"Aula Emprende"** es una plataforma educativa para el IES Enrique Tierno Galván que busca ampliar el conocimiento sobre emprendimiento entre los estudiantes, ayudándolos a ser autónomos.
 
-💻 He querido centrarme en mis puntos fuertes para el desarrollo de esta plataforma, como el backend, despliegue y mantenimiento, asegurando una base sólida y escalable para el proyecto.
+💻 Me he enfocado en el backend, despliegue y mantenimiento para asegurar una base sólida y escalable para el proyecto.
 
-🛠️ Ofrece recursos, guías y herramientas interactivas para desarrollar habilidades emprendedoras, permitiendo a los alumnos crear y gestionar sus propios planes de negocio usando tecnologías modernas como Angular 17.
+> ### Objetivos
 
-### Funcionalidades Principales
+🌟 **Objetivo General:** Facilitar el desarrollo de habilidades emprendedoras entre los estudiantes del IES Enrique Tierno Galván.
+
+🎯 **Objetivos Específicos:**
+1. Proporcionar información clara sobre cómo ser autónomo y emprender.
+2. Crear secciones temáticas sobre la creación de planes de negocio, eventos relevantes y análisis DAFO.
+3. Desarrollar herramientas interactivas intuitivas para que los alumnos elaboren y guarden sus planes de negocio.
+4. Facilitar la comunicación entre estudiantes y profesores.
+
+> ### Argumentación
+
+La creación de "Aula Emprende" surge de la necesidad de fomentar el espíritu emprendedor sin importar las edades y generos. Sirve para todo tipo de personas, tanto profesionales como principiantes proporcionando una estructura amigable con el usuario.
+
+### 🥇 "Empoderar a la próxima generación de emprendedores a través del conocimiento y la tecnología".
+
+> [!TIP]
+> ### 🗳️ Conclusiones y Aspectos a Mejorar
+
+"Aula Emprende" representa un paso hacia la promoción del espíritu emprendedor. Es crucial mejorar la experiencia del usuario y el diseño de la plataforma para alcanzar su máximo potencial.
+
+> ### ⏲️ Evolución
+
+Puedes seguir el progreso y las actualizaciones del proyecto en [este enlace](https://github.com/users/revudev/projects/3/views/1).
+
+> ### Funcionalidades Principales
 
 1. 📖 **Información** sobre cómo ser autónomo y emprender.
-2. 📊 **Secciones temáticas** sobre creación de planes de negocio, eventos, y análisis DAFO.
+2. 📊 **Secciones temáticas** sobre creación de planes de negocio, eventos y análisis DAFO.
 3. 🛠️ **Herramientas interactivas** para elaborar y guardar planes de negocio.
 4. 🧑‍🏫 **Comentarios y orientación** de profesores.
 
-### Tecnologías Utilizadas
+> [!TIP]
+> ### Tecnologías Utilizadas
 
-- 🅰️ **Angular 17**: Desarrollo del frontend.
+- 🅰️ **Angular 17**: Frontend.
 - 🎨 **Tailwind CSS**: Diseño y estilización.
 - 🟢 **Node.js y Express**: Backend y lógica del servidor.
 - 🌐 **Nginx**: Servidor web.
-- 🦆 **DuckDNS**: Gestión del nombre de dominio.
 - ☁️ **AWS**: Despliegue en la nube.
 - 🧩 **PrimeNg y Material Angular**: Componentes UI.
 
-### Motivación
+> ### Motivación
 
 💡 **El proyecto** nace del interés en el emprendimiento y la oportunidad de enseñar Angular. Busca fomentar el espíritu emprendedor desde edades tempranas y mejorar habilidades en desarrollo web moderno.
 
-### Futuro
+> ### Futuro
 
-🔧 **Se planea** mejorar la experiencia del usuario y el diseño de la plataforma para incrementar su usabilidad y atractivo visual.
+🔧 **Se planea** mejorar la experiencia del usuario y el diseño de la plataforma.
 
 
 > [!TIP]
