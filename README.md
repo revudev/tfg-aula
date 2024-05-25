@@ -1,41 +1,67 @@
 # 🚀 Aula De Emprendimiento - TFG Denys Revutskyi
-## Angular | TailWindCSS | Express.js
 
-This project utilizes modern technologies such as Angular, Node.js, Express, and Tailwind CSS, providing a frontend and backend structure optimized for maintenance. It leverages PrimeNg, Angular Material libraries, and Tailwind CSS for styling. MySQL is used as the database.
+### Introducción y Objetivos
+
+📚 **"Aula Emprende"** es una plataforma educativa para el IES Enrique Tierno Galván que busca ampliar el conocimiento sobre emprendimiento entre los estudiantes, ayudándolos a ser autónomos. Ofrece recursos, guías y herramientas interactivas para desarrollar habilidades emprendedoras, permitiendo a los alumnos crear y gestionar sus propios planes de negocio usando tecnologías modernas como Angular 17.
+
+### Funcionalidades Principales
+
+1. 📖 **Información** sobre cómo ser autónomo y emprender.
+2. 📊 **Secciones temáticas** sobre creación de planes de negocio, eventos, y análisis DAFO.
+3. 🛠️ **Herramientas interactivas** para elaborar y guardar planes de negocio.
+4. 🧑‍🏫 **Comentarios y orientación** de profesores.
+
+### Tecnologías Utilizadas
+
+- 🅰️ **Angular 17**: Desarrollo del frontend.
+- 🎨 **Tailwind CSS**: Diseño y estilización.
+- 🟢 **Node.js y Express**: Backend y lógica del servidor.
+- 🌐 **Nginx**: Servidor web.
+- 🦆 **DuckDNS**: Gestión del nombre de dominio.
+- ☁️ **AWS**: Despliegue en la nube.
+- 🧩 **PrimeNg y Material Angular**: Componentes UI.
+
+### Motivación
+
+💡 **El proyecto** nace del interés en el emprendimiento y la oportunidad de enseñar Angular. Busca fomentar el espíritu emprendedor desde edades tempranas y mejorar habilidades en desarrollo web moderno.
+
+### Futuro
+
+🔧 **Se planea** mejorar la experiencia del usuario y el diseño de la plataforma para incrementar su usabilidad y atractivo visual.
+
 
 > [!TIP]
->### Initial Project Setup:
-1. **Clone the project:**
-    ```bash
-    git clone https://github.com/revudev/tfg-aula.git
-    ```
+> ### Configuración Inicial del Proyecto
 
-2. **Navigate to the front and back directories and install the dependencies:**
-    ```bash
-    cd front
-    npm install
-    cd ../back
-    npm install
-    ```
+💻 **Clona el proyecto:**
+```bash
+git clone https://github.com/revudev/tfg-aula.git
+```
 
-3. **Run the frontend:**
-    ```bash
-    ng serve
-    ```
+📂 **Navega a los directorios frontend y backend e instala las dependencias:**
+```bash
+cd frontend && npm install && cd ../back && npm install
+```
 
-4. **Run the backend:**
-    ```bash
-    npm run den # This will build and run the backend server
-    ```
+▶️ **Ejecuta el frontend:**
+```bash
+ng serve
+```
 
-5. **Deployment:**
-    The project will be deployed on an ![Nginx](https://img.shields.io/badge/Nginx-Server-green) server with HTTPS and DDNS, as well as on Vercel.
+▶️ **Ejecuta el backend:**
+```bash
+npm run den # Esto construirá y ejecutará el servidor backend
+```
+
+🚀 **Despliegue:**
+El proyecto se desplegará en un servidor ![Nginx](https://img.shields.io/badge/Nginx-Server-green) con HTTPS y DDNS, así como en Vercel.
 
 > [!TIP]
->### Additional Tips:
-1. **Development Tools:**
-   - Use **VS Code** for an enhanced development experience. Extensions like Angular Language Service, ESLint, and Prettier can help maintain code quality.
-   - Utilize **Postman** to test your API endpoints.
+> ### Consejos Adicionales
 
-2. **Environment Variables:**
-   - Store sensitive data like database credentials and API keys in environment variables. Use the `dotenv` package for Node.js to manage these variables.
+🛠️ **Herramientas de desarrollo:**
+- Utiliza **VS Code** para una experiencia de desarrollo mejorada. Extensiones como Angular Language Service, ESLint y Prettier pueden ayudar a mantener la calidad del código.
+- Usa **Postman** para probar tus endpoints de API.
+
+🔐 **Variables de entorno:**
+- Almacena datos sensibles como credenciales de bases de datos y claves API en variables de entorno. Usa el paquete `dotenv` para Node.js para gestionar estas variables.
