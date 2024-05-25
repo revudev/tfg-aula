@@ -2,7 +2,7 @@
 
 ### Introducción y Objetivos
 
-📚 **"Aula Emprende"** es una plataforma educativa para el IES Enrique Tierno Galván que busca ampliar el conocimiento sobre emprendimiento entre los estudiantes, ayudándolos a ser autónomos. Ofrece recursos, guías y herramientas interactivas para desarrollar habilidades emprendedoras, permitiendo a los alumnos crear y gestionar sus propios planes de negocio usando tecnologías modernas como Angular 17.
+📚 **"Aula Emprende"** es una plataforma educativa para el IES Enrique Tierno Galván que busca ampliar el conocimiento sobre emprendimiento entre los estudiantes, ayudándolos a ser autónomos. He querido centrarme en mis puntos fuertes para el desarrollo de esta plataforma, como el backend, despliegue y mantenimiento, asegurando una base sólida y escalable para el proyecto. Ofrece recursos, guías y herramientas interactivas para desarrollar habilidades emprendedoras, permitiendo a los alumnos crear y gestionar sus propios planes de negocio usando tecnologías modernas como Angular 17.
 
 ### Funcionalidades Principales
 
