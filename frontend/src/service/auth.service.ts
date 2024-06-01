@@ -20,6 +20,9 @@ export class AuthService {
   getComments(id: number | undefined): Observable<any> {
     return this.apiService.post(`${url}/getComments`, { id });
   }
+  deleteComment(id: number): Observable<any> {
+    return this.apiService.post(`${url}/deleteComment`, { id });
+  }
   getEvent(): Observable<any> {
     return this.apiService.get(`${url}/getEvent`);
   }

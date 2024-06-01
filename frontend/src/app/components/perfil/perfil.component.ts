@@ -48,6 +48,18 @@ export class PerfilComponent {
       },
     });
   }
+  deleteComment(id: number) {
+    this.authService.deleteComment(id).subscribe({
+      next: (response) => {
+        this.router.navigate(['/perfil']).then(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        });
+      },
+      error: (err) => alert(err),
+    });
+  }
   getPlan() {
     this.authService.getPlan(this.currentUser?.id).subscribe({
       next: (response) => {
