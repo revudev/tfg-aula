@@ -16,12 +16,13 @@ app.use(express.json());
 
 // Only in local development
 // const cors = require("cors");
-// const corsOptions = {
-//   origin: "http://localhost:4200",
-//   optionsSuccessStatus: 204,
-//   methods: "GET, POST, PUT, DELETE",
-// };
-// app.use(cors(corsOptions));
+// app.use(
+//   cors({
+//     origin: "http://localhost:4200",
+//     optionsSuccessStatus: 204,
+//     methods: "GET, POST, PUT, DELETE",
+//   })
+// );
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -31,11 +32,26 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-  if (err) {
-    console.error("Error al conectarse con la base de datos:", err);
-    return;
-  }
-  console.log("Conectado correctamente con la bbdd");
+  console.log(
+    err
+      ? `Error al conectarse con la base de datos:" ${err}`
+      : "Conectado correctamente con la bbdd"
+  );
+});
+
+app.post("/deleteComment", (req, res) => {
+  const { id } = req.body;
+  const deleteCommentSql = `
+    DELETE FROM Comments WHERE id = ?;
+  `;
+  connection.query(deleteCommentSql, [id], (err, result) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ message: "Error al eliminar el comentario." });
+    }
+    res.status(200).json({ message: "Comentario eliminado correctamente." });
+  });
 });
 
 app.post("/getPlan", (req, res) => {
@@ -65,8 +81,8 @@ app.post("/getPlan", (req, res) => {
 
 app.get("/getAllPlan", (req, res) => {
   const getPlanSql = `
-    SELECT bp.id, bp.iniciativa, bp.mercadoMarketing, bp.gestiones, us.name 
-    FROM BusinessPlans AS bp 
+    SELECT bp.id, bp.iniciativa, bp.mercadoMarketing, bp.gestiones, us.name
+    FROM BusinessPlans AS bp
     JOIN Users AS us ON bp.user_id = us.id;
   `;
 
@@ -145,7 +161,7 @@ app.post("/sendComment", (req, res) => {
 app.post("/getComments", (req, res) => {
   const { id } = req.body;
   const showCommentSql = `
-    SELECT co.content, co.publication_date, us.name AS user_name
+    SELECT co.id, co.content, co.publication_date, us.name AS user_name
     FROM Comments co
     JOIN BusinessPlans bs ON co.plan_id = bs.id
     JOIN Users us ON co.user_publish = us.id
@@ -317,3 +333,31 @@ app.listen(port, () => {
 });
 
 module.exports = app;
+
+// ---------------------------- IMPLEMENT SUPABASE ------------------------------------------------
+
+// import { createClient } from "@supabase/supabase-js";
+// const supabase = createClient(process.env.SUPA_URL, process.env.SUPABASE_KEY);
+
+// async function fetchUsers() {
+//   try {
+//     const { data, error } = await supabase.from("Users").select("*");
+
+//     if (error) {
+//       console.error("Error fetching users:", error);
+//       return;
+//     }
+
+//     console.log("Raw data response:", data);
+
+//     if (data.length === 0) {
+//       console.log("No users found.");
+//     } else {
+//       console.log("Users:", data);
+//     }
+//   } catch (err) {
+//     console.error("Unexpected error:", err);
+//   }
+// }
+
+// fetchUsers();

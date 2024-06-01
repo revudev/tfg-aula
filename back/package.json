@@ -5,22 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc", 
+    "build": "tsc",
     "den": "tsc && node public/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "express-csp-header": "^5.2.1",
-    "mysql": "^2.18.1",
-    "nodemailer": "^6.9.13"
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.19.2",
+    "express-csp-header": "5.2.1",
+    "mysql": "2.18.1",
+    "nodemailer": "6.9.13"
   },
   "devDependencies": {
-    "@types/node": "^20.12.11",
-    "typescript": "^5.4.5"
+    "@types/node": "20.13.0",
+    "typescript": "5.4.5"
   }
 }
