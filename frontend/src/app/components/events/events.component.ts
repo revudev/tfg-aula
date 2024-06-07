@@ -86,7 +86,7 @@ export class EventsComponent implements OnInit {
   getEvent() {
     this.authService.getEvent().subscribe({
       next: (response) => {
-        this.eventos = response.events.map((evento: Evento) => ({
+        this.eventos = response.map((evento: Evento) => ({
           ...evento,
           Date: new Date(evento.Date),
         }));
