@@ -1,4 +1,21 @@
-# 🚀 Aula De Emprendimiento - TFG Denys Revutskyi
+<div align="center">
+  <h1>🚀 Aula De Emprendimiento - TFG Denys Revutskyi</h1>
+  <a href="https://aula-emp.vercel.app/">
+    <img src="https://github.com/revudev/tfg-aula/assets/99731617/35b3c113-02ce-4aa0-844d-0fac5f288478">
+  </a>
+</div>
+
+<div align="center">
+
+![Angular Badge](https://img.shields.io/badge/Angular-DD0031?logo=angular&logoColor=fff&style=flat)
+![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat)
+![Material UI Badge](https://img.shields.io/badge/Material--UI-0081CB?logo=mui&logoColor=fff&style=flat)
+![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=flat)
+![Express.js Badge](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white&style=flat)
+![MySQL Badge](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white&style=flat)
+
+
+</div>
 
 > [!TIP]
 > ### Introducción
@@ -88,8 +105,8 @@ El proyecto se desplegará en un servidor ![Nginx](https://img.shields.io/badge/
 > ### Consejos Adicionales
 
 🛠️ **Herramientas de desarrollo:**
-- Utiliza **VS Code** para una experiencia de desarrollo mejorada. Extensiones como Angular Language Service, ESLint y Prettier pueden ayudar a mantener la calidad del código.
-- Usa **Postman** para probar tus endpoints de API.
+- Utiliza **VS Code** para una experiencia de desarrollo mejorada, también extensiones como Angular Language Service, ESLint y Prettier.
+- Usa **Postman** para probar los endpoints de API.
 
 🔐 **Variables de entorno:**
-- Almacena datos sensibles como credenciales de bases de datos y claves API en variables de entorno. Usa el paquete `dotenv` para Node.js para gestionar estas variables.
+- Como el proyecto usa variables de entorno necesitas configurar tus dotenv,
