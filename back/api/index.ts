@@ -15,50 +15,69 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 // Only in local development
-// const cors = require("cors");
-// app.use(
-//   cors({
-//     origin: "http://localhost:4200",
-//     optionsSuccessStatus: 204,
-//     methods: "GET, POST, PUT, DELETE",
-//   })
-// );
+import cors from "cors";
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+  })
+);
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
+  connectionLimit: 10,
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
+  connectTimeout: 10000,
+  acquireTimeout: 10000,
+  waitForConnections: true,
+  queueLimit: 0,
 });
 
-connection.connect((err) => {
-  console.log(
-    err
-      ? `Error al conectarse con la base de datos:" ${err}`
-      : "Conectado correctamente con la bbdd"
-  );
-});
+const executeQuery = (query, params, res, successMessage) => {
+  pool.query(query, params, (err, result) => {
+    if (err) {
+      console.error("Error al ejecutar la consulta:", err);
+      if (
+        err.code === "PROTOCOL_CONNECTION_LOST" ||
+        err.code === "ECONNREFUSED"
+      ) {
+        return res.status(503).json({
+          message:
+            "Servicio no disponible. Por favor, inténtelo de nuevo más tarde.",
+        });
+      }
+      return res
+        .status(500)
+        .json({ message: "Error al ejecutar la consulta." });
+    }
+    if (successMessage) {
+      res.status(200).json({ message: successMessage });
+    } else {
+      res.status(200).json(result);
+    }
+  });
+};
 
 app.post("/deleteComment", (req, res) => {
   const { id } = req.body;
-  const deleteCommentSql = `
-    DELETE FROM Comments WHERE id = ?;
-  `;
-  connection.query(deleteCommentSql, [id], (err, result) => {
-    if (err) {
-      return res
-        .status(500)
-        .json({ message: "Error al eliminar el comentario." });
-    }
-    res.status(200).json({ message: "Comentario eliminado correctamente." });
-  });
+  const deleteCommentSql = "DELETE FROM Comments WHERE id = ?";
+  executeQuery(
+    deleteCommentSql,
+    [id],
+    res,
+    "Comentario eliminado correctamente."
+  );
 });
 
 app.post("/getPlan", (req, res) => {
   const id = req.body.id;
 
   const getPlanSql = "SELECT * FROM BusinessPlans WHERE user_id = ?";
-  connection.query(getPlanSql, [id], (err, result) => {
+  pool.query(getPlanSql, [id], (err, result) => {
     if (err) {
       return res
         .status(500)
@@ -86,7 +105,7 @@ app.get("/getAllPlan", (req, res) => {
     JOIN Users AS us ON bp.user_id = us.id;
   `;
 
-  connection.query(getPlanSql, (err, result) => {
+  pool.query(getPlanSql, (err, result) => {
     if (err) {
       return res.status(500).json({ message: "Error al obtener los planes." });
     }
@@ -108,20 +127,18 @@ app.get("/getAllPlan", (req, res) => {
 
 app.post("/sendComment", (req, res) => {
   const { planId, text, user_publish } = req.body;
-  const checkCommentSql = `
-    SELECT * FROM Comments WHERE plan_id = ? AND user_publish = ?;
-  `;
-  connection.query(checkCommentSql, [planId, user_publish], (err, results) => {
+  const checkCommentSql =
+    "SELECT * FROM Comments WHERE plan_id = ? AND user_publish = ?";
+  pool.query(checkCommentSql, [planId, user_publish], (err, results) => {
     if (err) {
       return res
         .status(500)
         .json({ message: "Error al comprobar el comentario." });
     }
     if (results.length > 0) {
-      const updateCommentSql = `
-        UPDATE Comments SET content = ? WHERE plan_id = ? AND user_publish = ?;
-      `;
-      connection.query(
+      const updateCommentSql =
+        "UPDATE Comments SET content = ? WHERE plan_id = ? AND user_publish = ?";
+      pool.query(
         updateCommentSql,
         [text, planId, user_publish],
         (err, result) => {
@@ -136,11 +153,10 @@ app.post("/sendComment", (req, res) => {
         }
       );
     } else {
-      const insertCommentSql = `
-        INSERT INTO Comments (plan_id, content, user_publish)
-        VALUES (?, ?, ?);
-      `;
-      connection.query(
+      const insertCommentSql =
+        "INSERT INTO Comments (plan_id, content, user_publish) VALUES (?, ?, ?)";
+
+      pool.query(
         insertCommentSql,
         [planId, text, user_publish],
         (err, result) => {
@@ -167,7 +183,7 @@ app.post("/getComments", (req, res) => {
     JOIN Users us ON co.user_publish = us.id
     WHERE bs.user_id = ?;
   `;
-  connection.query(showCommentSql, [id], (err, results) => {
+  pool.query(showCommentSql, [id], (err, results) => {
     if (err) {
       return res
         .status(500)
@@ -186,9 +202,8 @@ app.post("/savePlan", (req, res) => {
       Gestiones: gestiones,
     },
   } = req.body;
-
   const checkSql = "SELECT * FROM BusinessPlans WHERE user_id = ?";
-  connection.query(checkSql, [user_id], (checkErr, checkResult) => {
+  pool.query(checkSql, [user_id], (checkErr, checkResult) => {
     if (checkErr) {
       return res
         .status(500)
@@ -198,13 +213,12 @@ app.post("/savePlan", (req, res) => {
       const updateSql =
         "UPDATE BusinessPlans SET iniciativa = ?, mercadoMarketing = ?, gestiones = ? WHERE user_id = ?";
       const updateValues = [
-        iniciativa.join(", "),
-        mercadoMarketing.join(", "),
-        gestiones.join(", "),
+        (iniciativa ?? []).join(", "),
+        (mercadoMarketing ?? []).join(", "),
+        (gestiones ?? []).join(", "),
         user_id,
       ];
-
-      connection.query(updateSql, updateValues, (updateErr, updateResult) => {
+      pool.query(updateSql, updateValues, (updateErr, updateResult) => {
         if (updateErr) {
           return res
             .status(500)
@@ -224,7 +238,7 @@ app.post("/savePlan", (req, res) => {
         user_id,
       ];
 
-      connection.query(insertSql, insertValues, (insertErr, insertResult) => {
+      pool.query(insertSql, insertValues, (insertErr, insertResult) => {
         if (insertErr) {
           return res
             .status(500)
@@ -275,8 +289,9 @@ app.post("/enviarCorreo", (req, res) => {
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-  const query = `SELECT id, name, email, user_type FROM Users WHERE (name = ? OR email = ?) AND password = ?`;
-  connection.query(query, [username, username, password], (error, results) => {
+  const query =
+    "SELECT id, name, email, user_type FROM Users WHERE (name = ? OR email = ?) AND password = ?";
+  pool.query(query, [username, username, password], (error, results) => {
     if (error) {
       console.error("Error de la consulta:", error);
       return res.status(500).json({ message: "Error interno del servidor" });
@@ -292,39 +307,24 @@ app.post("/login", (req, res) => {
 app.post("/addEvent", (req, res) => {
   const { Date, Event, Description, id_user } = req.body;
 
-  const query = `INSERT INTO Events (Date, Event, Description, id_user) VALUES (?, ?, ?, ?)`;
-
-  connection.query(
+  const query =
+    "INSERT INTO Events (Date, Event, Description, id_user) VALUES (?, ?, ?, ?)";
+  executeQuery(
     query,
     [Date, Event, Description, id_user],
-    (error, results) => {
-      if (error) {
-        console.error("Error de la consulta:", error);
-        return res.status(500).json({ message: "Error interno del servidor" });
-      }
-      if (results.affectedRows > 0) {
-        res.status(200).json({ message: "Evento agregado exitosamente!" });
-      } else {
-        res
-          .status(401)
-          .json({ message: "Parámetro inválido o este evento ya existe" });
-      }
-    }
+    res,
+    "Evento agregado exitosamente!"
   );
 });
 
 app.get("/getEvent", (req, res) => {
-  const query = `SELECT * FROM Events`;
-  connection.query(query, (error, results) => {
+  const query = "SELECT * FROM Events";
+  pool.query(query, (error, results) => {
     if (error) {
       console.error("Error de la consulta:", error);
       return res.status(500).json({ message: "Error interno del servidor" });
     }
-    if (results.length > 0) {
-      res.status(200).json({ message: "Eventos encontrados", events: results });
-    } else {
-      res.status(401).json({ message: "No se encontraron eventos" });
-    }
+    res.status(200).json(results);
   });
 });
 
